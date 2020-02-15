@@ -142,15 +142,6 @@ private void tampil(){
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btncetak = new javax.swing.JButton();
-        txtid = new javax.swing.JTextField();
-        txtnpm = new javax.swing.JTextField();
-        txtnama = new javax.swing.JTextField();
-        txtidbuku = new javax.swing.JTextField();
-        txtjudul = new javax.swing.JTextField();
-        txtjumlah = new javax.swing.JTextField();
-        tglpinjam = new javax.swing.JTextField();
-        tglbalik = new javax.swing.JTextField();
-        status = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -216,15 +207,6 @@ private void tampil(){
             }
         });
         getContentPane().add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, 160, 40));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 280, 200, 30));
-        getContentPane().add(txtnpm, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 310, 200, 30));
-        getContentPane().add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 340, 200, 30));
-        getContentPane().add(txtidbuku, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 370, 200, 30));
-        getContentPane().add(txtjudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 400, 200, 30));
-        getContentPane().add(txtjumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 430, 200, 30));
-        getContentPane().add(tglpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 460, 200, 30));
-        getContentPane().add(tglbalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 490, 200, 30));
-        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 520, 200, 30));
 
         jButton4.setText("jButton4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -270,16 +252,6 @@ private void tampil(){
         String h = tabmode.getValueAt(bar, 7).toString();
         String i = tabmode.getValueAt(bar, 8).toString();
         
-       
-        txtid.setText(a);
-        txtnpm.setText(b);
-         txtnama.setText(c);
-        txtidbuku.setText(d);
-        txtjudul.setText(e);
-        txtjumlah.setText(f);
-        tglpinjam.setText(g);
-        tglbalik.setText(h);
-        status.setText(i);
 
     }//GEN-LAST:event_tabelMouseClicked
 
@@ -345,7 +317,7 @@ private void tampil(){
      //  String a= (String) tabel.getValueAt(bar, 0);
     ///  String b=(String) tabel.getValueAt(bar, 1);
         try{  
-            String namaFile = "src/laporan/lap_pinjam.jasper";
+            String namaFile = "src/laporan/laporan_data_pinjam.jasper";
             Connection conn = (Connection) koneksi.koneksi();
              
             HashMap parameter = new HashMap();
@@ -444,16 +416,7 @@ this.dispose();
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField status;
     private javax.swing.JTable tabel;
     private javax.swing.JTextField tcari;
-    private javax.swing.JTextField tglbalik;
-    private javax.swing.JTextField tglpinjam;
-    private javax.swing.JTextField txtid;
-    private javax.swing.JTextField txtidbuku;
-    private javax.swing.JTextField txtjudul;
-    private javax.swing.JTextField txtjumlah;
-    private javax.swing.JTextField txtnama;
-    private javax.swing.JTextField txtnpm;
     // End of variables declaration//GEN-END:variables
 }
