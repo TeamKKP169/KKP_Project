@@ -75,7 +75,7 @@ public class Data_buku extends javax.swing.JFrame {
         catch (Exception ex) {
         }
     }
-    private void tampilbox(){
+private void tampilbox(){
 try{
     String sql="select * from kategori_buku";
     java.sql.Connection kon = (Connection) koneksi.connect();
@@ -87,8 +87,74 @@ try{
 }
 }    catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, ex);
-     }
     }
+    }
+    
+  private void save(){
+  String kat = (String) cmbkat.getSelectedItem();
+String jdl = (String) txtjudul.getText();
+String penga = (String) txtpengarang.getText();
+String pener = (String) txtpenerbit.getText();
+String desc = (String) txtdesc.getText();
+String stk = (String) txtstok.getText();
+     
+    if(kat.equals("Kategori")){
+      JOptionPane.showMessageDialog(null, "Pilih Kategori!");
+}   
+else if(jdl.equals("")||penga.equals("")||pener.equals("")||desc.equals("")||stk.equals("")){
+JOptionPane.showMessageDialog(null, "Tidak Boleh Ada Yang Kosong!");     
+}else{
+
+    try{
+    String sql="select*from buku order by id_buku desc";
+    Connection conn=(Connection) koneksi.connect();
+    Statement stm = conn.createStatement();
+    ResultSet res = stm.executeQuery(sql);
+    String aidi;
+    if(res.next()){
+       
+      String no=res.getString("id_buku").substring(1);
+      String id = ""+(Integer.parseInt(no)+1);
+      String nol=null;
+      if(id.length()==1){
+          nol="000";
+      } 
+      else if(id.length()==2){
+          nol="00";
+      }
+       else if(id.length()==3){
+          nol="0";
+      }
+       else if(id.length()==4){
+          nol="";
+      }
+      aidi = "B"+nol+id; 
+    }
+    else{
+       aidi = "B0001"; 
+    }
+    try {
+            String query = "INSERT INTO buku VALUES "
+                    + "('" + aidi+"','"+txtjudul.getText() + "','" + txtpengarang.getText() 
+                    + "','" + txtpenerbit.getText() + "','" + cmbkat.getSelectedItem()  
+                    + "','" + txtdesc.getText()+ "','" + txtstok.getText() + "')";
+            java.sql.Connection kon = (Connection) koneksi.connect();
+            java.sql.PreparedStatement mts = kon.prepareStatement(query);
+            mts.execute();
+            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+            //kosong();
+            tabelbuku();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+   }  
+catch(Exception b){
+    JOptionPane.showMessageDialog(null,b.getMessage());
+}
+// kosong();
+            tabelbuku();
+     }  
+  }  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -260,86 +326,18 @@ int bar = tabel1.getSelectedRow();
         String d = tabmode.getValueAt(bar, 4).toString();
         String e = tabmode.getValueAt(bar, 5).toString();
         String f = tabmode.getValueAt(bar, 6).toString();
-        
-       
-        
+
         lblid.setText(h);
         txtjudul.setText(a);
         txtpengarang.setText(b);
-         
         txtpenerbit.setText(c);
         cmbkat.setSelectedItem(d);
-        
-        
         txtdesc.setText(e);
         txtstok.setText(f);        // TODO add your handling code here:
     }//GEN-LAST:event_tabel1MousePressed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-String kat = (String) cmbkat.getSelectedItem();
-String jdl = (String) txtjudul.getText();
-String penga = (String) txtpengarang.getText();
-String pener = (String) txtpenerbit.getText();
-String desc = (String) txtdesc.getText();
-String stk = (String) txtstok.getText();
-
-
-     if(kat.equals("Kategori")){
-      JOptionPane.showMessageDialog(null, "Pilih Kategori!");
-     }   
-     else if(jdl.equals("")||penga.equals("")||pener.equals("")||desc.equals("")||stk.equals("")){
-      JOptionPane.showMessageDialog(null, "Tidak Boleh Ada Yang Kosong!");     
-     }
-     else{
-     try{
-    String sql="select*from buku order by id_buku desc";
-    Connection conn=(Connection) koneksi.connect();
-   Statement stm = conn.createStatement();
-    ResultSet res = stm.executeQuery(sql);
-     String aidi;
-    if(res.next()){
-       
-      String no=res.getString("id_buku").substring(1);
-      String id = ""+(Integer.parseInt(no)+1);
-      String nol=null;
-      if(id.length()==1){
-          nol="000";
-      } 
-      else if(id.length()==2){
-          nol="00";
-      }
-       else if(id.length()==3){
-          nol="0";
-      }
-       else if(id.length()==4){
-          nol="";
-      }
-      aidi = "B"+nol+id; 
-    }
-    else{
-       aidi = "B0001"; 
-    }
-    try {
-            String query = "INSERT INTO buku VALUES "
-                    + "('" + aidi+"','"+txtjudul.getText() + "','" + txtpengarang.getText() 
-                    + "','" + txtpenerbit.getText() + "','" + cmbkat.getSelectedItem()  
-                    + "','" + txtdesc.getText()+ "','" + txtstok.getText() + "')";
-            java.sql.Connection kon = (Connection) koneksi.connect();
-            java.sql.PreparedStatement mts = kon.prepareStatement(query);
-            mts.execute();
-            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-            //kosong();
-            tabelbuku();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-   }  
-catch(Exception b){
-    JOptionPane.showMessageDialog(null,b.getMessage());
-}
-// kosong();
-            tabelbuku();
-     }         // TODO add your handling code here:
+save();        // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btnnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewActionPerformed
@@ -348,7 +346,6 @@ kosong();        // TODO add your handling code here:
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
   {
-           
             String sql = "update buku set"
                     + " id_buku=?,"
                     + "judul=?,"
@@ -368,10 +365,7 @@ kosong();        // TODO add your handling code here:
                 stat.setString(5, (String) cmbkat.getSelectedItem());
                  stat.setString(6, txtdesc.getText());
                   stat.setString(7, txtstok.getText());
-                
                
-              
-                
                 stat.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
             
@@ -448,8 +442,7 @@ tabmode.getDataVector().removeAllElements();
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
 try{
-         
-            
+             
          String namaFile = "src/laporan/report1.jasper";
          Connection kon3 = (Connection) koneksi.connect();
              
