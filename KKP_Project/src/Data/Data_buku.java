@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -38,6 +39,7 @@ public class Data_buku extends javax.swing.JFrame {
         tabelbuku();
         tampilbox();
         kosong();
+        lebarKolom();
     }
 
     private void kosong() {
@@ -154,7 +156,28 @@ catch(Exception b){
 // kosong();
             tabelbuku();
      }  
-  }  
+  } 
+  private void lebarKolom(){
+        TableColumn lebar_kolom;
+        
+        tabel1.setAutoResizeMode(tabel1.AUTO_RESIZE_OFF);
+        
+        lebar_kolom = tabel1.getColumnModel().getColumn(0);
+        lebar_kolom.setPreferredWidth(90);
+        lebar_kolom = tabel1.getColumnModel().getColumn(1);
+        lebar_kolom.setPreferredWidth(400);
+        lebar_kolom = tabel1.getColumnModel().getColumn(2);
+        lebar_kolom.setPreferredWidth(130);
+        lebar_kolom = tabel1.getColumnModel().getColumn(3);
+        lebar_kolom.setPreferredWidth(100);
+        lebar_kolom = tabel1.getColumnModel().getColumn(4);
+        lebar_kolom.setPreferredWidth(110);
+        lebar_kolom = tabel1.getColumnModel().getColumn(5);
+        lebar_kolom.setPreferredWidth(300);
+        lebar_kolom = tabel1.getColumnModel().getColumn(6);
+        lebar_kolom.setPreferredWidth(100);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -212,7 +235,7 @@ catch(Exception b){
         });
         jScrollPane1.setViewportView(tabel1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1260, 250));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1250, 250));
         getContentPane().add(lblid, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 130, 30));
         getContentPane().add(txtjudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 350, 40));
         getContentPane().add(txtpengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 350, 40));
@@ -337,11 +360,14 @@ int bar = tabel1.getSelectedRow();
     }//GEN-LAST:event_tabel1MousePressed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-save();        // TODO add your handling code here:
+save();  
+ lebarKolom();
+// TODO add your handling code here:
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btnnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewActionPerformed
-kosong();        // TODO add your handling code here:
+kosong();  
+ lebarKolom();// TODO add your handling code here:
     }//GEN-LAST:event_btnnewActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
@@ -372,6 +398,7 @@ kosong();        // TODO add your handling code here:
                 lblid.requestFocus();
              tabelbuku();
             kosong();
+             lebarKolom();
             }   
             
             catch (SQLException ex) {
@@ -393,6 +420,7 @@ kosong();        // TODO add your handling code here:
                 lblid.requestFocus();
                 tabelbuku();
                 kosong();
+                 lebarKolom();
             }   
             
             catch (SQLException e) {
@@ -455,6 +483,7 @@ try{
             JasperViewer.setDefaultLookAndFeelDecorated(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
+             lebarKolom();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btncetakActionPerformed
 
@@ -523,6 +552,7 @@ catch(Exception b){
 }
 // kosong();
             tabelbuku();
+             lebarKolom();
      }     
 }// TODO add your handling code here:
     }//GEN-LAST:event_txtstokKeyPressed

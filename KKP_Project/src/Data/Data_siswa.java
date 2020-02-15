@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -35,10 +36,28 @@ private final Connection conn = koneksi.connect();
         initComponents();
         tabelsiswa();
         refresh();
-        
+        lebarkolong();
     }
     
-    
+private void lebarkolong(){
+  TableColumn lebarkolong;
+        
+        tabel.setAutoResizeMode(tabel.AUTO_RESIZE_OFF);
+        
+        lebarkolong = tabel.getColumnModel().getColumn(0);
+        lebarkolong.setPreferredWidth(140);
+        lebarkolong = tabel.getColumnModel().getColumn(1);
+        lebarkolong.setPreferredWidth(300);
+        lebarkolong = tabel.getColumnModel().getColumn(2);
+        lebarkolong.setPreferredWidth(400);
+        lebarkolong = tabel.getColumnModel().getColumn(3);
+        lebarkolong.setPreferredWidth(200);
+        lebarkolong = tabel.getColumnModel().getColumn(4);
+        lebarkolong.setPreferredWidth(100);
+         lebarkolong = tabel.getColumnModel().getColumn(5);
+        lebarkolong.setPreferredWidth(100);
+
+}    
    private void refresh() {
         txtnis.setText("");
         txtnama.setText("");
@@ -83,8 +102,6 @@ private final Connection conn = koneksi.connect();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabel = new javax.swing.JTable();
         txtnis = new javax.swing.JTextField();
         txtnama = new javax.swing.JTextField();
         txtalamat = new javax.swing.JTextField();
@@ -105,6 +122,9 @@ private final Connection conn = koneksi.connect();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabel = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -113,26 +133,6 @@ private final Connection conn = koneksi.connect();
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tabel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tabelMousePressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tabel);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1250, 240));
         getContentPane().add(txtnis, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 270, 40));
         getContentPane().add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 270, 40));
         getContentPane().add(txtalamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 270, 40));
@@ -230,7 +230,29 @@ private final Connection conn = koneksi.connect();
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 0, 150, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 0, 150, 40));
+
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabel);
+
+        jScrollPane2.setViewportView(jScrollPane1);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 1210, 240));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -291,6 +313,7 @@ private final Connection conn = koneksi.connect();
             } 
             tabelsiswa();
             refresh();
+            lebarkolong();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveActionPerformed
 
@@ -413,6 +436,7 @@ refresh();        // TODO add your handling code here:
             } 
             tabelsiswa();
             refresh();
+             lebarkolong();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_txtnohpKeyPressed
 
@@ -498,6 +522,7 @@ this.dispose();
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jekel;
     private javax.swing.JComboBox<String> kelas;
     private javax.swing.JTable tabel;
