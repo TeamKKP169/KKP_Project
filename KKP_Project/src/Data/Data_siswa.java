@@ -420,7 +420,7 @@ refresh();        // TODO add your handling code here:
 try{
          
             
-         String namaFile = "src/laporan/datasiswa.jasper";
+         String namaFile = "src/laporan/laporan_data_siswa.jasper";
          Connection kon3 = (Connection) koneksi.connect();
              
             HashMap parameter = new HashMap();

@@ -443,7 +443,7 @@ tabmode.getDataVector().removeAllElements();
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
 try{
              
-         String namaFile = "src/laporan/report1.jasper";
+         String namaFile = "src/laporan/laporan_data_buku.jasper";
          Connection kon3 = (Connection) koneksi.connect();
              
             HashMap parameter = new HashMap();
@@ -538,7 +538,7 @@ this.dispose();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 kategori a=new kategori();
 a.setVisible(true);
-this.dispose();// TODO add your handling code here:
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

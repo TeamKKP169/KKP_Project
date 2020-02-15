@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1bb26acb-a965-4972-9c73-b71471b4f651">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="databuku" uuid="3b991a0e-ab20-42d7-9557-82a5ce36a79d">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     buku.`id_buku` AS buku_id_buku,
+     buku.`judul` AS buku_judul,
+     buku.`pengarang` AS buku_pengarang,
+     buku.`penerbit` AS buku_penerbit,
+     buku.`kategori` AS buku_kategori,
+     buku.`isbn` AS buku_isbn,
+     buku.`stok` AS buku_stok
+FROM
+     `buku` buku]]>
+		</queryString>
+		<field name="buku_id_buku" class="java.lang.String"/>
+		<field name="buku_judul" class="java.lang.String"/>
+		<field name="buku_pengarang" class="java.lang.String"/>
+		<field name="buku_penerbit" class="java.lang.String"/>
+		<field name="buku_kategori" class="java.lang.String"/>
+		<field name="buku_isbn" class="java.lang.String"/>
+		<field name="buku_stok" class="java.lang.Integer"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+     buku.`id_buku` AS buku_id_buku,
+     buku.`judul` AS buku_judul,
+     buku.`pengarang` AS buku_pengarang,
+     buku.`penerbit` AS buku_penerbit,
+     buku.`kategori` AS buku_kategori,
+     buku.`isbn` AS buku_isbn,
+     buku.`stok` AS buku_stok
+FROM
+     `buku` buku]]>
+	</queryString>
+	<field name="buku_id_buku" class="java.lang.String"/>
+	<field name="buku_judul" class="java.lang.String"/>
+	<field name="buku_pengarang" class="java.lang.String"/>
+	<field name="buku_penerbit" class="java.lang.String"/>
+	<field name="buku_kategori" class="java.lang.String"/>
+	<field name="buku_isbn" class="java.lang.String"/>
+	<field name="buku_stok" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="112" y="10" width="310" height="20" uuid="84303c12-a6ee-474d-a8c4-b1dd6b39cc25"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DATA BUKU PERPUSTAKAAN SMK PERINTIS 1 DEPOK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="50" width="354" height="20" uuid="b69957f3-0386-457b-9e66-3a3398696f25"/>
+				<text><![CDATA[www.smkperintis1depok.sch.id    email :/smk1perdep39@yahoo.co.id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="63" y="30" width="417" height="20" uuid="7c59abd9-3799-4142-a489-4da2f8e55504"/>
+				<text><![CDATA[JLn.Siliwangi No 39.Telp/Fax(021) 7773543 Kec.Pancoran Mas-Kota Depok 16431]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-10" y="11" width="73" height="50" uuid="6a1f83fc-5a63-4bcb-bc87-c99f21984822"/>
+				<imageExpression><![CDATA["/home/hikigaya/github/KKP_Project/KKP_Project/src/image_logo/perintis.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="120" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="-12" y="-113" width="537" height="80" uuid="e4b9db61-c20e-4e4c-8ea7-e9e2e0c4e82e"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="databuku" uuid="9219293c-956c-45b2-a727-9af7042e38c7">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="56" uuid="70371d20-2481-497c-b53e-d587d89adfbb">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="51" height="30" uuid="e3bae5d6-913b-40f5-8925-9a3548b83f2d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[KODE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="51" height="20" uuid="334f418a-0016-44db-bec8-4b030c0912b9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{buku_id_buku}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="226" uuid="2cc968f6-df56-4d18-b964-2e7634d7c90b">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="226" height="30" uuid="df0d634a-5621-4543-928c-3460f06acef7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[JUDUL BUKU]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="226" height="20" uuid="a0fbe3c4-89d6-428d-907c-4a9be75f868b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{buku_judul}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="77" uuid="d2587071-669a-4e4a-bfb1-2368fb4e21a1">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="75" height="30" uuid="d5bb58ba-e509-40c6-9a55-a039088bd84d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[PENGARANG]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="75" height="20" uuid="362dea6d-3741-4f36-8d1a-ec14cdb02912"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{buku_pengarang}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="f8563419-eb9f-4206-a595-a06f773a0ff3">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="56" height="30" uuid="f901e41a-faaa-495e-b253-45bd26f97bc8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[PENERBIT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="56" height="20" uuid="81da9f8f-c458-441b-ae0e-d61037a55e9a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{buku_penerbit}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="59" uuid="f73db808-fb8c-4c4e-8de1-1a9450282e3c">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="56" height="30" uuid="75101401-279f-496a-bdc7-c7f9c401b2fe"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[KATEGORI]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="56" height="20" uuid="baa74854-d0a8-48b5-bc60-95cdd7698f97"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{buku_kategori}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="52" uuid="1601e3d0-555b-46cc-8c2c-87979f0b4a1b">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="30" uuid="da43f062-6b3c-4fa6-a1f6-33a8658ac9db"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[ISBN]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="50" height="20" uuid="eda4c0c5-8b97-416b-91d9-1367827fc0c2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{buku_isbn}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="49" uuid="e5a4e4f5-9c08-417d-b91c-672d69b13a94">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="48" height="30" uuid="3e01a173-0d3d-4903-9d24-f5392c7d233b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[JUMLAH]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="48" height="20" uuid="cfa869c1-df0e-4975-88e5-741a3237f175"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{buku_stok}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>
