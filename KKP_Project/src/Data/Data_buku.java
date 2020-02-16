@@ -202,6 +202,12 @@ catch(Exception b){
         }
   }
   
+  private void datasiswa(){
+  Data_siswa a=new Data_siswa();
+  a.setVisible(true);
+  dispose();
+  }
+  
   private void cetak(){
   
   try{
@@ -284,7 +290,6 @@ catch(Exception b){
         jButton3 = new javax.swing.JButton();
         txtdesc = new javax.swing.JTextField();
         tcari = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         btncetak = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         txtstok = new javax.swing.JTextField();
@@ -298,6 +303,7 @@ catch(Exception b){
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -318,6 +324,11 @@ catch(Exception b){
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -380,10 +391,7 @@ catch(Exception b){
                 tcariKeyReleased(evt);
             }
         });
-        jPanel2.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, 370, 40));
-
-        jButton1.setText("Cari");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 270, -1, 40));
+        jPanel2.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, 370, 40));
 
         btncetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         btncetak.setText("Print");
@@ -467,6 +475,9 @@ catch(Exception b){
 
         jLabel2.setText("PENGARANG");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 250, -1, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
@@ -657,6 +668,10 @@ this.dispose();        // TODO add your handling code here:
 dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+datasiswa();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel8MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -700,10 +715,10 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JButton btnnew;
     private javax.swing.JButton btnsave;
     private javax.swing.JComboBox<String> cmbkat;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

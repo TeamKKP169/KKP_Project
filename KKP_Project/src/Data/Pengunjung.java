@@ -151,6 +151,13 @@ txttanggal.setText(
            + "-" + year);
 }
     
+private void datasiswa(){
+Data_siswa a=new Data_siswa();
+a.setVisible(true);
+dispose();
+
+}    
+    
 public void autoNumber() {
 		try {
 			Connection konek = koneksi.connect();
@@ -330,6 +337,11 @@ public void autoNumber() {
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 30));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 60, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 50));
@@ -557,6 +569,10 @@ refresh();
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
 login();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+//datasiswa();       // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel20MouseClicked
 
     /**
      * @param args the command line arguments
