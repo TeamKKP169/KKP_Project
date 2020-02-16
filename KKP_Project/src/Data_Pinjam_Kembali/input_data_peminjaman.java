@@ -401,24 +401,28 @@ private void loadKategori1() {
         jButton7 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelbuku = new javax.swing.JTable();
-        txtnpm = new javax.swing.JTextField();
-        txtnm = new javax.swing.JTextField();
-        txtidbk = new javax.swing.JTextField();
-        txtjdl = new javax.swing.JTextField();
-        txtjmlh = new javax.swing.JTextField();
-        btntambah = new javax.swing.JButton();
-        tgl = new com.toedter.calendar.JDateChooser();
-        tglbalik = new com.toedter.calendar.JDateChooser();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        txtjmlh = new javax.swing.JTextField();
+        txtjdl = new javax.swing.JTextField();
+        txtidbk = new javax.swing.JTextField();
+        txtnm = new javax.swing.JTextField();
+        txtnpm = new javax.swing.JTextField();
+        tglbalik = new com.toedter.calendar.JDateChooser();
+        tgl = new com.toedter.calendar.JDateChooser();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        btntambah = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -556,46 +560,61 @@ private void loadKategori1() {
                 .addContainerGap())
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(737, 700));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtnpm.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtnpmMouseClicked(evt);
-            }
-        });
-        txtnpm.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtnpmKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtnpm, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 310, 30));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtnm.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtnmKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtnm, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 310, 30));
-
-        txtidbk.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtidbkMouseClicked(evt);
+                jLabel10MouseClicked(evt);
             }
         });
-        txtidbk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidbkActionPerformed(evt);
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 30));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, 30));
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("x");
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
             }
         });
-        txtidbk.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtidbkKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtidbk, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 310, 30));
-        getContentPane().add(txtjdl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 310, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 40, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 50));
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setText("TANGGAL PINJAM");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+
+        jLabel7.setText("TANGGAL KEMBALI");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+
+        jLabel1.setText("NIS");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+
+        jLabel2.setText("NAMA");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
+
+        jLabel3.setText("ID BUKU");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+
+        jLabel4.setText("JUDUL BUKU");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
+
+        jLabel5.setText("JUMLAH");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, -1, -1));
 
         txtjmlh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -615,37 +634,58 @@ private void loadKategori1() {
                 txtjmlhKeyPressed(evt);
             }
         });
-        getContentPane().add(txtjmlh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 310, 30));
+        jPanel2.add(txtjmlh, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 310, 40));
+        jPanel2.add(txtjdl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 310, 40));
 
-        btntambah.setText("TAMBAH");
-        btntambah.addActionListener(new java.awt.event.ActionListener() {
+        txtidbk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtidbkMouseClicked(evt);
+            }
+        });
+        txtidbk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btntambahActionPerformed(evt);
+                txtidbkActionPerformed(evt);
             }
         });
-        getContentPane().add(btntambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 130, 40));
+        txtidbk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtidbkKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtidbk, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 310, 40));
 
-        tgl.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                tglPropertyChange(evt);
+        txtnm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnmKeyReleased(evt);
             }
         });
-        getContentPane().add(tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 170, 31));
+        jPanel2.add(txtnm, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 310, 40));
+
+        txtnpm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtnpmMouseClicked(evt);
+            }
+        });
+        txtnpm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnpmKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtnpm, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 310, 40));
 
         tglbalik.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tglbalikPropertyChange(evt);
             }
         });
-        getContentPane().add(tglbalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 170, 31));
+        jPanel2.add(tglbalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 170, 40));
 
-        jButton2.setText("KEMBALI");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        tgl.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tglPropertyChange(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 600, 200, 40));
+        jPanel2.add(tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 41, 170, 40));
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -653,7 +693,7 @@ private void loadKategori1() {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 40, 30));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 40, 40));
 
         jButton4.setText("jButton4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -661,44 +701,35 @@ private void loadKategori1() {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 40, 30));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 40, 40));
 
-        jLabel1.setText("NIS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        btntambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
+        btntambah.setText("TAMBAH");
+        btntambah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btntambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntambahActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btntambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 140, 50));
 
-        jLabel2.setText("NAMA");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
-
-        jLabel3.setText("ID BUKU");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
-
-        jLabel4.setText("JUDUL BUKU");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
-
-        jLabel5.setText("JUMLAH");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
-
-        jLabel6.setText("TANGGAL PINJAM");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
-
-        jLabel7.setText("TANGGAL KEMBALI");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
-
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
         jButton6.setText("REFRESH");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, 40));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, 140, 50));
 
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
         jButton8.setText("Cek Data");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 480, 150, 40));
+        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 150, 50));
 
         jButton9.setText("jButton9");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -706,7 +737,9 @@ private void loadKategori1() {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, 130, 40));
+        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 10, 0));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 720, 620));
 
         pack();
         setLocationRelativeTo(null);
@@ -1047,12 +1080,6 @@ String d =
         // TODO add your handling code here:
     }//GEN-LAST:event_txtjmlhKeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-Menu.Menu a=new Menu.Menu();
-a.setVisible(true);
-dispose();       // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 tabelpinjam a=new tabelpinjam();
 a.setVisible(true);
@@ -1080,6 +1107,16 @@ String reportSource = null;
             System.out.println(e);
         }         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+Menu.Menu a=new Menu.Menu();
+a.setVisible(true);
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel12MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1125,7 +1162,6 @@ String reportSource = null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btntambah;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1136,6 +1172,9 @@ String reportSource = null;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1144,6 +1183,8 @@ String reportSource = null;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;

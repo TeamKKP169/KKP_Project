@@ -133,29 +133,61 @@ private void kosong(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtstatus = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        tcari = new javax.swing.JTextField();
         txtid = new javax.swing.JTextField();
         txtpinjam = new javax.swing.JTextField();
         txtblk = new javax.swing.JTextField();
         tglkembali = new com.toedter.calendar.JDateChooser();
+        tcari = new javax.swing.JTextField();
         txttelat = new javax.swing.JTextField();
-        txtstatus = new javax.swing.JTextField();
         btnproses = new javax.swing.JButton();
         btnbatal = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(1280, 700));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtstatus.setText("sudah kembali");
+        getContentPane().add(txtstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 479, 10, 0));
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 50, 30));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("x");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 10, 40, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, 50));
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -175,17 +207,10 @@ private void kosong(){
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1210, 220));
-
-        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tcariKeyReleased(evt);
-            }
-        });
-        getContentPane().add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 91, 286, 30));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 219, 33));
-        getContentPane().add(txtpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 219, 33));
-        getContentPane().add(txtblk, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 219, 33));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 1210, 220));
+        jPanel2.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 219, 50));
+        jPanel2.add(txtpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 219, 50));
+        jPanel2.add(txtblk, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 219, 50));
 
         tglkembali.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -197,11 +222,15 @@ private void kosong(){
                 tglkembaliKeyPressed(evt);
             }
         });
-        getContentPane().add(tglkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 220, 30));
-        getContentPane().add(txttelat, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 370, 120, 33));
+        jPanel2.add(tglkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 210, 50));
 
-        txtstatus.setText("sudah kembali");
-        getContentPane().add(txtstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 479, 10, 0));
+        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tcariKeyReleased(evt);
+            }
+        });
+        jPanel2.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(866, 260, 370, 40));
+        jPanel2.add(txttelat, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 140, 50));
 
         btnproses.setText("Proses");
         btnproses.addActionListener(new java.awt.event.ActionListener() {
@@ -209,43 +238,22 @@ private void kosong(){
                 btnprosesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnproses, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 220, 40));
+        jPanel2.add(btnproses, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 220, 50));
 
+        btnbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
         btnbatal.setText("batal");
+        btnbatal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnbatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbatalActionPerformed(evt);
             }
         });
-        getContentPane().add(btnbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 220, 40));
+        jPanel2.add(btnbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 110, 50));
 
-        jLabel1.setText("Pencarian");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, 30));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, 50, 60));
 
-        jButton1.setText("Kembali");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 230, 40));
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("About");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Help");
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("Exit");
-        jMenuBar1.add(jMenu5);
-
-        setJMenuBar(jMenuBar1);
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
         pack();
         setLocationRelativeTo(null);
@@ -439,19 +447,19 @@ else{
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Menu.Menu a=new Menu.Menu();
-a.setVisible(true);
-this.dispose();
-
-
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
 kosong();        // TODO add your handling code here:
     }//GEN-LAST:event_btnbatalActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+Menu.Menu a=new Menu.Menu();
+a.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -498,14 +506,12 @@ kosong();        // TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbatal;
     private javax.swing.JButton btnproses;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField tcari;
