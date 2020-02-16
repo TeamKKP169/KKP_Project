@@ -21,6 +21,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import java.text.*;
+import java.awt.print.*;
+import javax.swing.JTable;
 
 /**
  *
@@ -211,6 +214,7 @@ catch(Exception b){
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 700));
@@ -335,6 +339,14 @@ catch(Exception b){
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 520, 200, 30));
+
+        jButton4.setText("Save as");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 620, 170, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -572,6 +584,21 @@ dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        
+ MessageFormat header = new MessageFormat("Report Print");
+ MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try{
+
+tabel1.print(JTable.PrintMode.NORMAL, header,footer);
+
+
+} catch (java.awt.print.PrinterException e){
+    System.err.format("gagal print", e.getMessage());
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -618,6 +645,7 @@ dispose();
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

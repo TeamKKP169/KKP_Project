@@ -5,18 +5,76 @@
  */
 package Data;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hikigaya
  */
 public class tabel_pengunjung extends javax.swing.JFrame {
-
+private final Connection conn = koneksi.connect();
+     private DefaultTableModel tabmode;
     /**
      * Creates new form tabel_pengunjung
      */
     public tabel_pengunjung() {
         initComponents();
+        datatabel();
+      
     }
+    
+    
+    
+    
+private void hapusdata(){
+ String sql = "delete from pengunjung ";
+            try {
+              Connection connection = koneksi.connect();
+            Statement stat = connection.createStatement();
+               stat.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "data terhapus semua");
+                
+                datatabel();
+            }   
+            
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus "+e);
+            }
+         
+
+
+}    
+protected void datatabel(){
+        Object[] Baris ={"KODE PENGUNJUNG","NIS"," NAMA"," NO HP"," TANGGAL BERKUNJUNG","WAKTU"};
+        tabmode = new DefaultTableModel(null, Baris);
+        tabel.setModel(tabmode);
+        String sql = "select * from pengunjung order by id asc";
+        try {
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while(hasil.next()){
+                String data1 = hasil.getString("id");
+                String data2 = hasil.getString("nis");
+                String data3 = hasil.getString("nama");
+                String data4 = hasil.getString("telpon");
+                String data5 = hasil.getString("tanggal");
+                String data6 = hasil.getString("jam");
+                
+                String[] data={data1,data2,data3,data4,data5,data6,};
+                tabmode.addRow(data);
+            }
+        }      
+        
+        catch (Exception e) {
+        }
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,21 +85,98 @@ public class tabel_pengunjung extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabel = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        tcari = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 700));
+        setPreferredSize(new java.awt.Dimension(1280, 700));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabel);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 125, 1201, 319));
+
+        jButton1.setText("PRINT");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 462, 155, 40));
+
+        jButton2.setText("BERSIH DATA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 460, -1, 40));
+
+        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tcariKeyPressed(evt);
+            }
+        });
+        getContentPane().add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 69, 430, 40));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+hapusdata();
+datatabel();
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tcariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tcariKeyPressed
+tabmode.getDataVector().removeAllElements();
+        tabmode.fireTableDataChanged();
+
+        try {
+            Connection connection = koneksi.connect();
+            Statement statement = connection.createStatement();
+
+            String sql = "select * from pengunjung where id like '%" 
+                    + tcari.getText() + "%' or id like'%" 
+                    + tcari.getText() + "%' or nis like'" 
+                    + tcari.getText() + "%' or nama like'%" 
+                    + tcari.getText() + "%' or telpon like'%" 
+                    
+                     + tcari.getText() + "%' or tanggal like'%" 
+                    + tcari.getText() + "%' " + "or jam like'%" 
+                    + tcari.getText() + "%'";
+            ResultSet resulSet = statement.executeQuery(sql);
+
+            while (resulSet.next()) {
+                Object[] o = new Object[6];
+                o[0] = resulSet.getString("id");
+                o[1] = resulSet.getString("nis");
+                o[2] = resulSet.getString("nama");
+                o[3] = resulSet.getString("telpon");
+                o[4] = resulSet.getString("tanggal");
+                o[5] = resulSet.getString("jam");
+               
+              
+                tabmode.addRow(o);
+            }
+            resulSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Terjadi Error");
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_tcariKeyPressed
 
     /**
      * @param args the command line arguments
@@ -79,5 +214,10 @@ public class tabel_pengunjung extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabel;
+    private javax.swing.JTextField tcari;
     // End of variables declaration//GEN-END:variables
 }
