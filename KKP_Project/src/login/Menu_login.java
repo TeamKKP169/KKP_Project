@@ -37,17 +37,40 @@ public class Menu_login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn_log = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txt_id = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txt_pass = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
+        btn_log = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(551, 421));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(551, 421));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 250, 40));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setText("Username");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 130, 30));
+
+        txt_pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_passKeyPressed(evt);
+            }
+        });
+        jPanel1.add(txt_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 250, 40));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("Password");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, 30));
 
         btn_log.setIcon(new javax.swing.ImageIcon("/home/hikigaya/NetBeansProjects/Sistem_Dristribusi_Gudang_Elektronik/src/Gambar/Login-toolbar-32.png")); // NOI18N
         btn_log.setText("Masuk");
@@ -56,26 +79,22 @@ public class Menu_login extends javax.swing.JFrame {
                 btn_logActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_log, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 130, 40));
+        jPanel1.add(btn_log, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 130, -1));
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 214, 38));
+        jLabel1.setFont(new java.awt.Font("aakar", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Login System");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 370, 120));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("ID =");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 50, 30));
-
-        txt_pass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_passKeyPressed(evt);
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("x");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
             }
         });
-        jPanel1.add(txt_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 210, 40));
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Password =");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 60, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 420));
 
@@ -127,6 +146,10 @@ this.dispose();
         }           // TODO add your handling code here:
     }//GEN-LAST:event_txt_passKeyPressed
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -164,8 +187,10 @@ this.dispose();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_log;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_id;
     private javax.swing.JPasswordField txt_pass;
