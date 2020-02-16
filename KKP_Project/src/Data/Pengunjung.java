@@ -72,6 +72,12 @@ public Timer t = null;
     
     }
     
+    private void login(){
+    Menu_login a=new Menu_login();
+a.setVisible(true);
+dispose();
+    }
+    
   public void setTanggal(){
     java.util.Date skrg = new java.util.Date();
     java.text.SimpleDateFormat kal = new
@@ -206,27 +212,25 @@ public void autoNumber() {
         jLabel11 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         txtnis = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtnama = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         txttelpon = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         txttanggal = new javax.swing.JTextField();
+        txtjam = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtkd = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        txtkd = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtnama = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtjam = new javax.swing.JTextField();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jLabel9 = new javax.swing.JLabel();
 
         daftar.setMinimumSize(new java.awt.Dimension(400, 300));
 
@@ -303,9 +307,35 @@ public void autoNumber() {
         });
         jDialog1.getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 240, 20));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(685, 754));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("x");
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 60, 30));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 30));
+
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 60, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 50));
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtnis.setText("masukan nis di sini !");
         txtnis.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,9 +351,24 @@ public void autoNumber() {
                 txtnisKeyReleased(evt);
             }
         });
-        getContentPane().add(txtnis, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 392, 49));
-        getContentPane().add(txttelpon, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 392, 50));
-        getContentPane().add(txttanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 150, 51));
+        jPanel2.add(txtnis, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 440, 49));
+
+        jLabel6.setText("NIS");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 80, 40));
+        jPanel2.add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 440, 52));
+
+        jLabel1.setText("NAMA");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 70, 40));
+        jPanel2.add(txttelpon, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 440, 50));
+
+        jLabel4.setText("TELPON");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 40));
+        jPanel2.add(txttanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 200, 51));
+        jPanel2.add(txtjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, 220, 50));
+
+        jLabel5.setText("TANGGAL");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 70, 40));
+        jPanel2.add(txtkd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 200, 40));
 
         jButton1.setText("DAFTAR ANGGOTA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -331,61 +376,26 @@ public void autoNumber() {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, -1, 40));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, -1, 40));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
         jButton2.setText("SUBMIT");
+        jButton2.setBorderPainted(false);
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 142, 38));
-        getContentPane().add(txtkd, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 163, 27));
-
-        jLabel1.setText("NAMA");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 92, 49));
-        getContentPane().add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 392, 52));
-
-        jButton3.setText("Keluar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 142, 41));
-
-        jLabel4.setText("TELPON");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 92, 49));
-
-        jLabel5.setText("TANGGAL");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 92, 49));
-
-        jLabel6.setText("NIS");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 92, 40));
-
-        jLabel9.setText("jLabel9");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 80, 30));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 142, 50));
 
         jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 60, 30));
-        getContentPane().add(txtjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 220, 50));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 60, 30));
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jLabel9.setText("jLabel9");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 80, 30));
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("About");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Help");
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("Exit");
-        jMenuBar1.add(jMenu5);
-
-        setJMenuBar(jMenuBar1);
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 670, 670));
 
         pack();
         setLocationRelativeTo(null);
@@ -480,13 +490,6 @@ daftar.setLocationRelativeTo(null);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-Menu_login a=new Menu_login();
-a.setVisible(true);
-dispose();
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
  {
              
@@ -551,6 +554,10 @@ refresh();
         // TODO add your handling code here:
     }//GEN-LAST:event_jProgressBar1InputMethodTextChanged
 
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+login();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel18MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -593,7 +600,6 @@ refresh();
     private javax.swing.JDialog daftar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
@@ -605,7 +611,10 @@ refresh();
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -613,12 +622,8 @@ refresh();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField txtjam;
     private javax.swing.JTextField txtkd;

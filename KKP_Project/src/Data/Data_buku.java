@@ -181,6 +181,85 @@ catch(Exception b){
         lebar_kolom.setPreferredWidth(100);
         
     }
+  
+  private void hapus(){
+   {
+            String sql = "delete from buku where id_buku='"+lblid.getText()+"'";
+            try {
+                PreparedStatement stat = conn.prepareStatement(sql);
+                stat.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+                kosong();
+                lblid.requestFocus();
+                tabelbuku();
+                kosong();
+                 lebarKolom();
+            }   
+            
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus "+e);
+            }
+        }
+  }
+  
+  private void cetak(){
+  
+  try{
+             
+         String namaFile = "src/laporan/laporan_data_buku.jasper";
+         Connection kon3 = (Connection) koneksi.connect();
+             
+            HashMap parameter = new HashMap();
+         
+            File report_file = new File(namaFile);
+            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
+            JasperViewer.viewReport(jasperPrint,false);
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+             lebarKolom();
+        } 
+  }
+  
+  private void edit(){
+    {
+            String sql = "update buku set"
+                    + " id_buku=?,"
+                    + "judul=?,"
+                    + "pengarang=?,"
+                    + "penerbit=?,"
+                    + "kategori=?,"
+                    + "isbn=?,"
+                    + "stok=?"
+                    + "where id_buku='"+lblid.getText()+"'";
+            try {
+                PreparedStatement stat = conn.prepareStatement(sql);
+                stat.setString(1, lblid.getText());
+                stat.setString(2, txtjudul.getText());
+                stat.setString(3, txtpengarang.getText());
+                stat.setString(4, txtpenerbit.getText());
+                
+                stat.setString(5, (String) cmbkat.getSelectedItem());
+                 stat.setString(6, txtdesc.getText());
+                  stat.setString(7, txtstok.getText());
+               
+                stat.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
+            
+                lblid.requestFocus();
+             tabelbuku();
+            kosong();
+             lebarKolom();
+            }   
+            
+            catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Diubah "+ex);
+            } 
+            
+            
+        }
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,36 +269,73 @@ catch(Exception b){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel1 = new javax.swing.JTable();
-        lblid = new javax.swing.JTextField();
         txtjudul = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         txtpengarang = new javax.swing.JTextField();
         txtpenerbit = new javax.swing.JTextField();
         cmbkat = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
         txtdesc = new javax.swing.JTextField();
+        tcari = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        btncetak = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         txtstok = new javax.swing.JTextField();
         btnsave = new javax.swing.JButton();
         btnnew = new javax.swing.JButton();
         btnedit = new javax.swing.JButton();
         btnhapus = new javax.swing.JButton();
-        btncetak = new javax.swing.JButton();
-        tcari = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblid = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(1280, 700));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1280, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 30));
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("x");
+        jLabel9.setFocusable(false);
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 0, 40, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, 50));
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabel1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -239,98 +355,16 @@ catch(Exception b){
         });
         jScrollPane1.setViewportView(tabel1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1250, 250));
-        getContentPane().add(lblid, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 130, 30));
-        getContentPane().add(txtjudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 350, 40));
-        getContentPane().add(txtpengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 350, 40));
-        getContentPane().add(txtpenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 350, 40));
-
-        cmbkat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori" }));
-        getContentPane().add(cmbkat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 520, 130, 30));
-        getContentPane().add(txtdesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 560, 350, 40));
-
-        txtstok.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtstokKeyPressed(evt);
-            }
-        });
-        getContentPane().add(txtstok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 610, 350, 40));
-
-        btnsave.setText("Simpan");
-        btnsave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsaveActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 170, 40));
-
-        btnnew.setText("Refresh");
-        btnnew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnewActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnnew, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, 170, 40));
-
-        btnedit.setText("Edit");
-        btnedit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, 170, 40));
-
-        btnhapus.setText("Hapus");
-        btnhapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnhapusActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 170, 40));
-
-        btncetak.setText("Print");
-        btncetak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncetakActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 570, 170, 40));
-
-        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tcariKeyReleased(evt);
-            }
-        });
-        getContentPane().add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 340, 370, 40));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1240, 220));
+        jPanel2.add(txtjudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 350, 40));
 
         jLabel1.setText("JUDUL BUKU");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+        jPanel2.add(txtpengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 350, 40));
+        jPanel2.add(txtpenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 350, 40));
 
-        jLabel2.setText("PENGARANG");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
-
-        jLabel3.setText("PENERBIT");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
-
-        jLabel4.setText("KATEGORI");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
-
-        jLabel5.setText("ISBN");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, -1));
-
-        jLabel6.setText("STOK");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, -1, -1));
-
-        jButton1.setText("Cari");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 340, -1, 40));
-
-        jButton2.setText("Kembali");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 10, 190, 50));
+        cmbkat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori" }));
+        jPanel2.add(cmbkat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 140, 40));
 
         jButton3.setText("Tambah Kategori");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -338,15 +372,103 @@ catch(Exception b){
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 520, 200, 30));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 180, 40));
+        jPanel2.add(txtdesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, 350, 40));
 
+        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tcariKeyReleased(evt);
+            }
+        });
+        jPanel2.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, 370, 40));
+
+        jButton1.setText("Cari");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 270, -1, 40));
+
+        btncetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
+        btncetak.setText("Print");
+        btncetak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btncetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncetakActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 120, 40));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton4.setText("Save as");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 620, 170, 40));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 120, 40));
+
+        txtstok.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtstokKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtstok, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 350, 40));
+
+        btnsave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
+        btnsave.setText("Simpan");
+        btnsave.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnsave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsaveActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 570, 140, 40));
+
+        btnnew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
+        btnnew.setText("Refresh");
+        btnnew.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnnew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnewActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnnew, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 570, 140, 40));
+
+        btnedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/edit.png"))); // NOI18N
+        btnedit.setText("Edit");
+        btnedit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 120, 40));
+
+        btnhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
+        btnhapus.setText("Hapus");
+        btnhapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhapusActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 120, 40));
+        jPanel2.add(lblid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 130, 20));
+
+        jLabel6.setText("STOK");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
+
+        jLabel5.setText("ISBN");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
+
+        jLabel4.setText("KATEGORI");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+
+        jLabel3.setText("PENERBIT");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+
+        jLabel2.setText("PENGARANG");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
         pack();
         setLocationRelativeTo(null);
@@ -383,62 +505,11 @@ kosong();
     }//GEN-LAST:event_btnnewActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-  {
-            String sql = "update buku set"
-                    + " id_buku=?,"
-                    + "judul=?,"
-                    + "pengarang=?,"
-                    + "penerbit=?,"
-                    + "kategori=?,"
-                    + "isbn=?,"
-                    + "stok=?"
-                    + "where id_buku='"+lblid.getText()+"'";
-            try {
-                PreparedStatement stat = conn.prepareStatement(sql);
-                stat.setString(1, lblid.getText());
-                stat.setString(2, txtjudul.getText());
-                stat.setString(3, txtpengarang.getText());
-                stat.setString(4, txtpenerbit.getText());
-                
-                stat.setString(5, (String) cmbkat.getSelectedItem());
-                 stat.setString(6, txtdesc.getText());
-                  stat.setString(7, txtstok.getText());
-               
-                stat.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
-            
-                lblid.requestFocus();
-             tabelbuku();
-            kosong();
-             lebarKolom();
-            }   
-            
-            catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Data Gagal Diubah "+ex);
-            } 
-            
-            
-        }         // TODO add your handling code here:
+  edit();         // TODO add your handling code here:
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhapusActionPerformed
- {
-            String sql = "delete from buku where id_buku='"+lblid.getText()+"'";
-            try {
-                PreparedStatement stat = conn.prepareStatement(sql);
-                stat.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
-                kosong();
-                lblid.requestFocus();
-                tabelbuku();
-                kosong();
-                 lebarKolom();
-            }   
-            
-            catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus "+e);
-            }
-        }        // TODO add your handling code here:
+ hapus();        // TODO add your handling code here:
     }//GEN-LAST:event_btnhapusActionPerformed
 
     private void tcariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tcariKeyReleased
@@ -481,22 +552,7 @@ tabmode.getDataVector().removeAllElements();
     }//GEN-LAST:event_tcariKeyReleased
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
-try{
-             
-         String namaFile = "src/laporan/laporan_data_buku.jasper";
-         Connection kon3 = (Connection) koneksi.connect();
-             
-            HashMap parameter = new HashMap();
-         
-            File report_file = new File(namaFile);
-            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
-            JasperViewer.viewReport(jasperPrint,false);
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage());
-             lebarKolom();
-        }        // TODO add your handling code here:
+cetak();       // TODO add your handling code here:
     }//GEN-LAST:event_btncetakActionPerformed
 
     private void txtstokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstokKeyPressed
@@ -569,14 +625,6 @@ catch(Exception b){
 }// TODO add your handling code here:
     }//GEN-LAST:event_txtstokKeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-Menu.Menu a=new Menu.Menu();
-a.setVisible(true);
-this.dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 kategori a=new kategori();
 a.setVisible(true);
@@ -598,6 +646,16 @@ tabel1.print(JTable.PrintMode.NORMAL, header,footer);
     System.err.format("gagal print", e.getMessage());
 }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+Menu.Menu a=new Menu.Menu();
+a.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -643,7 +701,6 @@ tabel1.print(JTable.PrintMode.NORMAL, header,footer);
     private javax.swing.JButton btnsave;
     private javax.swing.JComboBox<String> cmbkat;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -652,6 +709,11 @@ tabel1.print(JTable.PrintMode.NORMAL, header,footer);
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lblid;
     private javax.swing.JTable tabel1;
