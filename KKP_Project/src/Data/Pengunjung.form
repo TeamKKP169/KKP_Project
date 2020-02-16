@@ -130,9 +130,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/gambar/tutup.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Close"/>
           </Properties>
           <Events>
@@ -270,9 +267,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/gambar/siswa.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="DAFTAR ANGGOTA"/>
       </Properties>
       <Events>
@@ -286,9 +280,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/gambar/tambah.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="SUBMIT"/>
       </Properties>
       <Events>
@@ -326,9 +317,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/gambar/tutup.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Keluar"/>
       </Properties>
       <Events>

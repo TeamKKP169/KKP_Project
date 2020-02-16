@@ -279,7 +279,6 @@ public void autoNumber() {
         jLabel8.setText("Tanggal berkunjung");
         jDialog1.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/tutup.png"))); // NOI18N
         jButton4.setText("Close");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,7 +325,6 @@ public void autoNumber() {
         getContentPane().add(txttelpon, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 392, 50));
         getContentPane().add(txttanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 150, 51));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/siswa.png"))); // NOI18N
         jButton1.setText("DAFTAR ANGGOTA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,7 +333,6 @@ public void autoNumber() {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, -1, 40));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/tambah.png"))); // NOI18N
         jButton2.setText("SUBMIT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,7 +346,6 @@ public void autoNumber() {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 92, 49));
         getContentPane().add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 392, 52));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/tutup.png"))); // NOI18N
         jButton3.setText("Keluar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

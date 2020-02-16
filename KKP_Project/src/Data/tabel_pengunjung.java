@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -112,6 +114,11 @@ protected void datatabel(){
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 125, 1201, 319));
 
         jButton1.setText("PRINT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 462, 155, 40));
 
         jButton2.setText("BERSIH DATA");
@@ -177,6 +184,19 @@ tabmode.getDataVector().removeAllElements();
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_tcariKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ MessageFormat header = new MessageFormat("Report Print");
+ MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try{
+
+tabel.print(JTable.PrintMode.NORMAL, header,footer);
+
+
+} catch (java.awt.print.PrinterException e){
+    System.err.format("gagal print", e.getMessage());
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
