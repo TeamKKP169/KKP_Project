@@ -183,9 +183,9 @@ private void kosong(){
             }
         });
         getContentPane().add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 91, 286, 30));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 219, 33));
-        getContentPane().add(txtpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 219, 33));
-        getContentPane().add(txtblk, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 219, 33));
+        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 219, 33));
+        getContentPane().add(txtpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 219, 33));
+        getContentPane().add(txtblk, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 219, 33));
 
         tglkembali.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -197,8 +197,8 @@ private void kosong(){
                 tglkembaliKeyPressed(evt);
             }
         });
-        getContentPane().add(tglkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 220, 30));
-        getContentPane().add(txttelat, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 110, 33));
+        getContentPane().add(tglkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 220, 30));
+        getContentPane().add(txttelat, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 370, 120, 33));
 
         txtstatus.setText("sudah kembali");
         getContentPane().add(txtstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 479, 10, 0));
@@ -209,10 +209,15 @@ private void kosong(){
                 btnprosesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnproses, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 230, 40));
+        getContentPane().add(btnproses, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 220, 40));
 
         btnbatal.setText("batal");
-        getContentPane().add(btnbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, 230, 40));
+        btnbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbatalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 220, 40));
 
         jLabel1.setText("Pencarian");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, 30));
@@ -223,7 +228,7 @@ private void kosong(){
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 570, 230, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 230, 40));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -443,6 +448,10 @@ this.dispose();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
+kosong();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbatalActionPerformed
 
     /**
      * @param args the command line arguments

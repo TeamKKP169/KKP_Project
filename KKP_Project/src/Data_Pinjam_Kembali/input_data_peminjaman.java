@@ -124,12 +124,14 @@ private void loadKategori1() {
 
     }
  private void refresh() {
+     
         txtnpm.setText("");
         txtnm.setText("");
         txtidbk.setText("");
         txtjdl.setText("");
         txtjmlh.setText("");
-        
+        tgl.setDate(null);
+        tglbalik.setDate(null);
        
         
     }
@@ -233,8 +235,8 @@ private void loadKategori1() {
                                 }
         // TODO add your handling code here:
          
-                                new input_data_peminjaman().setVisible(true);
-                                dispose();
+                             //   new input_data_peminjaman().setVisible(true);
+                              //  dispose();
 
                             } catch (Exception e) {
                                 JOptionPane.showMessageDialog(this, e.getMessage());
@@ -346,8 +348,8 @@ private void loadKategori1() {
                                 }
         // TODO add your handling code here:
          
-                                new input_data_peminjaman().setVisible(true);
-                                dispose();
+                              //  new input_data_peminjaman().setVisible(true);
+                               // dispose();
 
                             } catch (Exception e) {
                                 JOptionPane.showMessageDialog(this, e.getMessage());

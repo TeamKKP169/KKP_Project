@@ -568,6 +568,7 @@ this.dispose();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 kategori a=new kategori();
 a.setVisible(true);
+dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 

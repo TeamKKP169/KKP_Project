@@ -43,6 +43,7 @@ public class tabelpinjam extends javax.swing.JFrame {
 //        bersihdata();
        // tampil();
         datatable();
+       
     }
     
     
@@ -90,6 +91,47 @@ public class tabelpinjam extends javax.swing.JFrame {
         catch (Exception e) {
         }
     }
+   
+   
+private void cetaksatudata(){
+ int bar = tabel.getSelectedRow();
+     //  String a= (String) tabel.getValueAt(bar, 0);
+      String b=(String) tabel.getValueAt(bar, 1);
+        try{  
+            String namaFile = "src/laporan/lap_jual.jasper";
+            Connection conn = (Connection) koneksi.koneksi();
+             
+            HashMap parameter = new HashMap();
+          //  parameter .put("id_pinjam", txtid.getText());
+           parameter.put("npm",b);
+            File report_file = new File(namaFile);
+            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
+            JasperViewer.viewReport(jasperPrint,false);
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        }catch(Exception e){
+       JOptionPane.showMessageDialog(null,("Data bentrok ! pilih salah satu dan nama yang sama pilih cetak semua"));
+            
+        // bersihdata();  
+        
+         datatable();
+            
+        }    
+      
+          int baris = tabel.getSelectedRow();
+        String id= tabel.getValueAt(baris, 0).toString();
+        try {
+            String sql ="delete from pinjaman where id_pinjam = '"+id+"'"; 
+            java.sql.Connection conn=(Connection)koneksi.koneksi();
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil");
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
+        }
+
+
+}   
 private void tampil(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
@@ -126,6 +168,45 @@ private void tampil(){
             
         }
     }
+
+private void printkabeh(){
+try{  
+            String namaFile = "src/laporan/laporan_data_pinjam.jasper";
+            Connection conn = (Connection) koneksi.koneksi();
+             
+            HashMap parameter = new HashMap();
+          //  parameter .put("id_pinjam", txtid.getText());
+         //   parameter.put("npm",txtnpm.getText());
+            File report_file = new File(namaFile);
+            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
+            JasperViewer.viewReport(jasperPrint,false);
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        }catch(Exception e){
+        JOptionPane.showMessageDialog(null,"gagal");
+            
+        // bersihdata();  
+        
+       datatable();
+            
+        }    
+      
+        String sql = "delete from pinjaman ";
+            try {
+              Connection connection = koneksi.koneksi();
+            Statement stat = connection.createStatement();
+               stat.executeUpdate(sql);
+               // JOptionPane.showMessageDialog(null, "");
+                
+                datatable();
+            }   
+            
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus "+e);
+            }
+         
+
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,6 +225,7 @@ private void tampil(){
         btncetak = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -200,21 +282,21 @@ private void tampil(){
         jButton3.setText("Cari");
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 100, 40));
 
-        btncetak.setText("Print");
+        btncetak.setText("Print all");
         btncetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncetakActionPerformed(evt);
             }
         });
-        getContentPane().add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, 160, 40));
+        getContentPane().add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 280, 160, 40));
 
-        jButton4.setText("jButton4");
+        jButton4.setText("bersihdata");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 280, 130, 40));
 
         jButton5.setText("kembali");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +305,14 @@ private void tampil(){
             }
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1084, 0, 160, 40));
+
+        jButton6.setText("Print 1 data");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 140, 40));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -310,49 +400,8 @@ private void tampil(){
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
- 
-        
-        
-     //   int bar = tabel.getSelectedRow();
-     //  String a= (String) tabel.getValueAt(bar, 0);
-    ///  String b=(String) tabel.getValueAt(bar, 1);
-        try{  
-            String namaFile = "src/laporan/laporan_data_pinjam.jasper";
-            Connection conn = (Connection) koneksi.koneksi();
-             
-            HashMap parameter = new HashMap();
-          //  parameter .put("id_pinjam", txtid.getText());
-         //   parameter.put("npm",txtnpm.getText());
-            File report_file = new File(namaFile);
-            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
-            JasperViewer.viewReport(jasperPrint,false);
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        }catch(Exception e){
-        JOptionPane.showMessageDialog(null,e.getMessage());
-            
-        // bersihdata();  
-        
-         datatable();
-            
-        }    
-      
-        String sql = "delete from pinjaman ";
-            try {
-              Connection connection = koneksi.koneksi();
-            Statement stat = connection.createStatement();
-               stat.executeUpdate(sql);
-               // JOptionPane.showMessageDialog(null, "");
-                
-                datatable();
-            }   
-            
-            catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus "+e);
-            }
-         
-        
-        
+ printkabeh();    
+ datatable();
     }//GEN-LAST:event_btncetakActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -365,6 +414,12 @@ a.setVisible(true);
 this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+ cetaksatudata();
+ datatable();
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,6 +466,7 @@ this.dispose();
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
