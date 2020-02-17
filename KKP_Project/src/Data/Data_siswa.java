@@ -16,10 +16,14 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -45,17 +49,17 @@ private void lebarkolong(){
         tabel.setAutoResizeMode(tabel.AUTO_RESIZE_OFF);
         
         lebarkolong = tabel.getColumnModel().getColumn(0);
-        lebarkolong.setPreferredWidth(140);
+        lebarkolong.setPreferredWidth(150);
         lebarkolong = tabel.getColumnModel().getColumn(1);
-        lebarkolong.setPreferredWidth(300);
+        lebarkolong.setPreferredWidth(200);
         lebarkolong = tabel.getColumnModel().getColumn(2);
-        lebarkolong.setPreferredWidth(400);
+        lebarkolong.setPreferredWidth(365);
         lebarkolong = tabel.getColumnModel().getColumn(3);
         lebarkolong.setPreferredWidth(200);
         lebarkolong = tabel.getColumnModel().getColumn(4);
-        lebarkolong.setPreferredWidth(100);
+        lebarkolong.setPreferredWidth(110);
          lebarkolong = tabel.getColumnModel().getColumn(5);
-        lebarkolong.setPreferredWidth(100);
+        lebarkolong.setPreferredWidth(155);
 
 }    
    private void refresh() {
@@ -169,11 +173,13 @@ private void lebarkolong(){
                 refresh();
                 txtnis.requestFocus();
                 tabelsiswa();
+                lebarkolong();
             }  
             
             catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Data Gagal Diubah "+e);
             } 
+            tabelsiswa();
         } 
   }
   
@@ -187,6 +193,7 @@ private void lebarkolong(){
                 refresh();
                 txtnis.requestFocus();
                 tabelsiswa();
+                lebarkolong();
             }   
             
             catch (SQLException e) {
@@ -299,7 +306,7 @@ private void lebarkolong(){
                 btneditActionPerformed(evt);
             }
         });
-        jPanel1.add(btnedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, 120, 40));
+        jPanel1.add(btnedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 120, 40));
 
         btnhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
         btnhapus.setText("Hapus");
@@ -308,7 +315,7 @@ private void lebarkolong(){
                 btnhapusActionPerformed(evt);
             }
         });
-        jPanel1.add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 120, 40));
+        jPanel1.add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, 120, 40));
 
         btnbaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
         btnbaru.setText("Baru");
@@ -317,26 +324,26 @@ private void lebarkolong(){
                 btnbaruActionPerformed(evt);
             }
         });
-        jPanel1.add(btnbaru, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 120, 40));
+        jPanel1.add(btnbaru, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 120, 40));
 
         btncetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
-        btncetak.setText("Print");
+        btncetak.setText("Print All");
         btncetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncetakActionPerformed(evt);
             }
         });
-        jPanel1.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 120, 40));
+        jPanel1.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 130, 40));
 
         tcari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tcariKeyReleased(evt);
             }
         });
-        jPanel1.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, 410, 40));
+        jPanel1.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 410, 40));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 260, -1, 50));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 230, -1, 50));
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -421,19 +428,31 @@ private void lebarkolong(){
     }//GEN-LAST:event_tabelMousePressed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-save();        // TODO add your handling code here:
+save();   
+ tabelsiswa();
+
+// TODO add your handling code here:
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-edit();           // TODO add your handling code here:
+edit();   
+ tabelsiswa();
+lebarkolong();
+// TODO add your handling code here:
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhapusActionPerformed
-hapus();        // TODO add your handling code here:
+hapus(); 
+ tabelsiswa();
+lebarkolong();
+// TODO add your handling code here:
     }//GEN-LAST:event_btnhapusActionPerformed
 
     private void btnbaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbaruActionPerformed
-refresh();        // TODO add your handling code here:
+refresh();
+ tabelsiswa();
+lebarkolong();
+// TODO add your handling code here:
     }//GEN-LAST:event_btnbaruActionPerformed
 
     private void tcariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tcariKeyReleased
@@ -582,4 +601,8 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JTextField txtnis;
     private javax.swing.JTextField txtnohp;
     // End of variables declaration//GEN-END:variables
+
+    private Connection conn() {
+         return conn;
+    }
 }

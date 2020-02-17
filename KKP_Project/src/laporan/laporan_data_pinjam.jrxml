@@ -51,6 +51,30 @@
 			<style backcolor="#EFF7FF"/>
 		</conditionalStyle>
 	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#FFEFEF"/>
+		</conditionalStyle>
+	</style>
 	<subDataset name="pinjam" uuid="f55a9d46-5951-428d-9a58-f166ed07202a">
 		<queryString language="SQL">
 			<![CDATA[SELECT
@@ -93,7 +117,7 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="65" splitType="Stretch">
+		<band height="84" splitType="Stretch">
 			<staticText>
 				<reportElement x="89" y="21" width="412" height="20" uuid="a687159d-a6c9-4ff0-b758-42a8f0c3a260"/>
 				<text><![CDATA[JLn.Siliwangi No 39.Telp/Fax(021) 7773543 Kec.Pancoran Mas-Kota Depok 16431]]></text>
@@ -113,111 +137,94 @@ FROM
 			</image>
 		</band>
 	</title>
+	<columnHeader>
+		<band height="146"/>
+	</columnHeader>
 	<detail>
-		<band height="95" splitType="Stretch">
+		<band height="134" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 1" style="table 1" x="-8" y="40" width="509" height="52" uuid="8e7d563c-86b6-4bab-92dc-e87aa23f3244"/>
+				<reportElement key="table 2" style="table 2" x="70" y="16" width="360" height="80" uuid="550cb42f-862e-424f-8fba-64deaeeb269a"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="pinjam" uuid="bbcde1b4-26c7-4895-a120-90d0438d184f">
+					<datasetRun subDataset="pinjam" uuid="1847da73-6d1b-48d6-8bf8-f46ca4741502">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="268" uuid="9f507dd0-f505-4e6e-8070-24d98948e8d4">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+					<jr:column width="90" uuid="fe0ed9d2-b25d-440f-9418-538097f84bb4">
+						<jr:columnHeader style="table 2_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="268" height="30" uuid="e86107fa-54ee-4d44-b197-0aa3953ae601"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
-								<text><![CDATA[JUDUL BUKU]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="66a3f925-d421-4d14-b563-45ab67f8c5b2"/>
+								<text><![CDATA[pinjaman_nama]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 2_CH" height="30"/>
+						<jr:detailCell style="table 2_TD" height="20">
 							<textField>
-								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="268" height="20" uuid="1f72955e-1361-4884-86f2-422d3ba4e8ec"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
+								<reportElement x="0" y="0" width="90" height="20" uuid="34b8a5dd-78ba-42aa-a195-5791f6bf42ef"/>
+								<textFieldExpression><![CDATA[$F{pinjaman_nama}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1823984d-17b1-4cbc-9645-b3c6a5eccc95">
+						<jr:columnHeader style="table 2_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="fbcde941-d4c2-4cf0-814b-424492327f1e"/>
+								<text><![CDATA[pinjaman_judul]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30"/>
+						<jr:detailCell style="table 2_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="63d7383b-bdb0-47cf-bb20-c9aef31a1380"/>
 								<textFieldExpression><![CDATA[$F{pinjaman_judul}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="128" uuid="03f5c156-cde5-4530-b36f-29fe81463274">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+					<jr:column width="90" uuid="e35f837c-e2a7-48a0-b2c4-21eac10d12fe">
+						<jr:columnHeader style="table 2_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="128" height="30" uuid="b70bbff8-ab64-418c-b250-283b669a362a"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
-								<text><![CDATA[TANGGAL PINJAM]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3b410ebf-f9b3-4897-910a-ffa9ea291032"/>
+								<text><![CDATA[pinjaman_tgl_pinjam]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 2_CH" height="30"/>
+						<jr:detailCell style="table 2_TD" height="20">
 							<textField>
-								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="128" height="20" uuid="6b76c4cd-ba63-43e6-84c0-3268d887827a"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
+								<reportElement x="0" y="0" width="90" height="20" uuid="b096b09d-5015-49df-9431-39ebbf090506"/>
 								<textFieldExpression><![CDATA[$F{pinjaman_tgl_pinjam}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="129" uuid="a81d518d-46c1-4978-bea0-f519536be8f4">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+					<jr:column width="90" uuid="2ddee0c3-a542-4416-9d21-919462cb9a64">
+						<jr:columnHeader style="table 2_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="127" height="30" uuid="c5a35bdd-a8de-4ae6-9c70-48c09ce490f2"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
-								<text><![CDATA[TANGGAL KEMBALI]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="59bca8e1-d0c2-4022-9822-832da180f72b"/>
+								<text><![CDATA[pinjaman_tgl_balik]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 2_CH" height="30"/>
+						<jr:detailCell style="table 2_TD" height="20">
 							<textField>
-								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="127" height="20" uuid="14e1b323-cfb7-45e0-8f6f-58249b3d378b"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
+								<reportElement x="0" y="0" width="90" height="20" uuid="9ca47d4d-f9bd-4e34-8e0b-62790b133375"/>
 								<textFieldExpression><![CDATA[$F{pinjaman_tgl_balik}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="45" uuid="2157012e-c660-4a46-966b-254db78268e8">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+					<jr:column width="90" uuid="c87019b1-ee13-44cd-99cd-355a2ce7e2bd">
+						<jr:columnHeader style="table 2_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="43" height="30" uuid="dd9c0ead-b18e-41ac-af0b-5404d543741e"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
-								<text><![CDATA[TOTAL]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="74eb1f4b-0e14-4936-8fcc-98d501d72af9"/>
+								<text><![CDATA[pinjaman_jumlah]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+						<jr:columnFooter style="table 2_CH" height="30"/>
+						<jr:detailCell style="table 2_TD" height="20">
 							<textField>
-								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="43" height="20" uuid="2981784e-c8f5-4a8c-9a96-16ee11f900fa"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
+								<reportElement x="0" y="0" width="90" height="20" uuid="52b86107-e68d-4a5f-ba13-444391146c1e"/>
 								<textFieldExpression><![CDATA[$F{pinjaman_jumlah}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
-			<textField>
-				<reportElement x="55" y="20" width="75" height="20" uuid="dd927ec8-3825-416c-8a29-5bf432d55e3c"/>
-				<textFieldExpression><![CDATA[$F{pinjaman_nama}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="-8" y="20" width="54" height="20" uuid="29b2069d-52ad-488d-b85f-b91c8c98a267"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[NAMA =]]></text>
-			</staticText>
 		</band>
 	</detail>
 </jasperReport>

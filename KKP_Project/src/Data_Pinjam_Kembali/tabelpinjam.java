@@ -171,7 +171,7 @@ private void tampil(){
 
 private void printkabeh(){
 try{  
-            String namaFile = "src/laporan/laporan_data_pinjam.jasper";
+            String namaFile = "src/laporan/pinjam.jasper";
             Connection conn = (Connection) koneksi.koneksi();
              
             HashMap parameter = new HashMap();

@@ -334,6 +334,11 @@ public void autoNumber() {
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 60, 30));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel19MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 30));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
@@ -573,6 +578,13 @@ login();        // TODO add your handling code here:
     private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
 //datasiswa();       // TODO add your handling code here:
     }//GEN-LAST:event_jLabel20MouseClicked
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+login.Menu_login a=new login.Menu_login();
+a.setVisible(true);
+dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel19MouseClicked
 
     /**
      * @param args the command line arguments
