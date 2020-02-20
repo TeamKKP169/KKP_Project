@@ -50,6 +50,14 @@ String balik;
     txtjdl.setEditable(false);
     refresh();
     //tambah_data_pinjam();
+    
+      try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(input_data_peminjaman.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+       this.setTitle("PEMINJAMAN");
     }
 private void loadKategori() {
         tabel1.addColumn("NIS");
@@ -405,6 +413,7 @@ private void loadKategori1() {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -589,6 +598,11 @@ private void loadKategori1() {
             }
         });
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 40, 30));
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("FORM PEMINJAMAN");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 210, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 50));
 
@@ -1175,6 +1189,7 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

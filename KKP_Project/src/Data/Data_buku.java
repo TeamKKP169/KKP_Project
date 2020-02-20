@@ -6,6 +6,7 @@
 package Data;
 
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,10 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import java.text.*;
 import java.awt.print.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JTable;
 
 /**
@@ -43,6 +48,15 @@ public class Data_buku extends javax.swing.JFrame {
         tampilbox();
         kosong();
         lebarKolom();
+        
+        
+        try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   this.setTitle("DATA BUKU");
     }
 
     private void kosong() {
@@ -279,6 +293,7 @@ catch(Exception b){
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel1 = new javax.swing.JTable();
@@ -342,6 +357,11 @@ catch(Exception b){
             }
         });
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 0, 40, -1));
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("DATA BUKU");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 130, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, 50));
 
@@ -719,6 +739,7 @@ datasiswa();        // TODO add your handling code here:
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

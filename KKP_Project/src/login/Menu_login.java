@@ -8,12 +8,15 @@ package login;
 
 import Data.koneksi;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -26,6 +29,13 @@ public class Menu_login extends javax.swing.JFrame {
      */
     public Menu_login() {
         initComponents();
+           try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu_login.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+       this.setTitle("Login System");
     }
 
     /**

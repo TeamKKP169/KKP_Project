@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -17,6 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -69,7 +74,14 @@ public Timer t = null;
         t.start();
     
     
-    
+        
+     try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(Pengunjung.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+       this.setTitle("FORM Pengunjung");
     }
     
     private void login(){
@@ -223,6 +235,7 @@ public void autoNumber() {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtnis = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -267,7 +280,6 @@ public void autoNumber() {
         );
 
         jDialog1.setMinimumSize(new java.awt.Dimension(355, 350));
-        jDialog1.setPreferredSize(new java.awt.Dimension(355, 350));
         jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setText("jLabel12");
@@ -349,6 +361,11 @@ public void autoNumber() {
             }
         });
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 60, 30));
+
+        jLabel21.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("FORM PENGUNJUNG");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 210, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 50));
 
@@ -670,6 +687,7 @@ dispose();
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

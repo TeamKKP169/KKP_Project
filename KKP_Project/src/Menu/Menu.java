@@ -12,18 +12,31 @@ import Data.tabel_pengunjung;
 import Data_Pinjam_Kembali.Cek_Data_Peminjaman_dan_Pengembalian;
 import Data_Pinjam_Kembali.input_data_peminjaman;
 import Data_Pinjam_Kembali.pengembalian_buku;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author hikigaya
  */
 public class Menu extends javax.swing.JFrame {
+   
 
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+        try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          this.setTitle("Beranda");
     }
 
     
@@ -111,6 +124,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -130,7 +144,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 290, 50));
+        jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 290, 50));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -180,7 +194,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 280, 50));
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 280, 50));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -241,6 +255,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 0, 50, 40));
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("BERANDA");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 120, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1250, 50));
 
@@ -331,6 +350,7 @@ katalog();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

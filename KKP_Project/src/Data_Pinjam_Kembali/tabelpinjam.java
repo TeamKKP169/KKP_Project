@@ -43,7 +43,13 @@ public class tabelpinjam extends javax.swing.JFrame {
 //        bersihdata();
        // tampil();
         datatable();
-       
+         try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+       this.setTitle("DATA PEMINJAMAN");
     }
     
     
@@ -125,9 +131,9 @@ private void cetaksatudata(){
             java.sql.Connection conn=(Connection)koneksi.koneksi();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Berhasil");
+            JOptionPane.showMessageDialog(null, "Berhasil Dicetak");
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Data Gagal di cetak"+e.getMessage());
         }
 
 
@@ -218,9 +224,9 @@ try{
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
@@ -230,6 +236,7 @@ try{
         btncetak = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -250,16 +257,6 @@ try{
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 10, 40, 30));
 
-        jButton1.setFont(new java.awt.Font("Lucida Sans", 0, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
-        jButton1.setText("   +Input Pinjaman  ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 0, 190, 50));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -270,6 +267,11 @@ try{
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, 30));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("DATA PEMINJAMAN");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 230, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, 50));
 
@@ -311,7 +313,7 @@ try{
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 150, 40));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 150, 40));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton6.setText("Print 1 data");
@@ -321,7 +323,7 @@ try{
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, -1, 40));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, -1, 40));
 
         btncetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         btncetak.setText("Print all");
@@ -330,13 +332,23 @@ try{
                 btncetakActionPerformed(evt);
             }
         });
-        jPanel2.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 130, 40));
+        jPanel2.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 130, 40));
 
         jLabel4.setText("jLabel4");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, 30));
+
+        jButton1.setFont(new java.awt.Font("Lucida Sans", 0, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
+        jButton1.setText("   +Input Pinjaman  ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 180, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
@@ -481,6 +493,7 @@ this.dispose();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

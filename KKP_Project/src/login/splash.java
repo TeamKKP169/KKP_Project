@@ -30,13 +30,19 @@ public splash(){
         initComponents();
         
        
-       
+          try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(splash.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+       this.setTitle("Loading.........");
      
        
-       this.setTitle("Aplikasi Perpustakaan");
+       
        
         t = new Timer(100, (ActionEvent e) -> {
-            count +=5;
+            count +=1;
             jProgressBar1.setValue(count);
             if(jProgressBar1.getValue()<100){
                 jProgressBar1.setValue(jProgressBar1.getValue()+ 1);
@@ -60,20 +66,28 @@ public splash(){
 
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(588, 421));
-        setPreferredSize(new java.awt.Dimension(588, 421));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(588, 482));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(588, 482));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jProgressBar1.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jProgressBar1.setForeground(new java.awt.Color(255, 51, 51));
         jProgressBar1.setBorderPainted(false);
         jProgressBar1.setStringPainted(true);
-        getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 560, 47));
+        getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 570, 47));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 430));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_logo/SMK PERINTIS DEPOK.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 410, 360));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Loading ....................");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 355, 380, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -115,6 +129,7 @@ public splash(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables

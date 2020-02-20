@@ -6,6 +6,11 @@
 package login;
 
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 /**
@@ -20,10 +25,17 @@ public Timer t = null;
      */
     public splash3() {
         initComponents();
-         this.setTitle("Aplikasi Perpustakaan");
+          try{
+         BufferedImage beam = ImageIO.read(getClass().getResource("SMK PERINTIS DEPOK.png"));
+        setIconImage(beam);
+        } catch (IOException ex) {
+            Logger.getLogger(splash3.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+       this.setTitle("Loading.........");
+        
        
         t = new Timer(100, (ActionEvent e) -> {
-            count +=5;
+            count +=1;
             jProgressBar1.setValue(count);
             if(jProgressBar1.getValue()<100){
                 jProgressBar1.setValue(jProgressBar1.getValue()+ 1);
