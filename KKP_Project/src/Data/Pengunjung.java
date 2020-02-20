@@ -267,6 +267,7 @@ public void autoNumber() {
         );
 
         jDialog1.setMinimumSize(new java.awt.Dimension(355, 350));
+        jDialog1.setPreferredSize(new java.awt.Dimension(355, 350));
         jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setText("jLabel12");
@@ -480,9 +481,37 @@ refresh();
             
              autoNumber();
              refresh();
-             jDialog1.setVisible(true);
-            getData();
-           
+      //      jDialog1.setVisible(true);
+    //        getData();
+          try{
+             int ok = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin menunjungi katalog buku?", "Konfirmasi Dialog", JOptionPane.YES_NO_OPTION);
+             int no =JOptionPane.showConfirmDialog(null, "Yakin ?","Konfirmasi ", JOptionPane.NO_OPTION);
+        if(ok==0){
+        
+        new katalog_buku().setVisible(true);
+        dispose();
+        
+        }
+            
+            
+        if(no==1){
+         jDialog1.setVisible(true);
+        getData();
+        dispose();
+        
+        }
+            
+            
+       {
+     //   new katalog_buku().setVisible(true);
+      jDialog1.setVisible(true);
+        getData();
+       
+       }
+            
+          }catch(Exception e){
+               
+       }
            
             } catch (Exception b) {
                 JOptionPane.showMessageDialog(this, b.getMessage());
@@ -562,9 +591,7 @@ refresh();
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
  jDialog1.setVisible(false);
-
-
-               // TODO add your handling code here:
+  
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jProgressBar1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jProgressBar1InputMethodTextChanged

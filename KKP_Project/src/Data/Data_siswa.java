@@ -280,7 +280,7 @@ private void lebarkolong(){
         jekel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-Laki", "Perempuan" }));
         jPanel1.add(jekel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 140, 40));
 
-        kelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7", "8", "9", "10", "11", "12", " " }));
+        kelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kelas", "X", "XI", "XII" }));
         jPanel1.add(kelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 140, 40));
 
         txtnohp.addKeyListener(new java.awt.event.KeyAdapter() {

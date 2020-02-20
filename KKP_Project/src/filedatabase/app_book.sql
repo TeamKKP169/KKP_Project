@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 15 Feb 2020 pada 17.18
+-- Waktu pembuatan: 18 Feb 2020 pada 07.20
 -- Versi server: 10.3.15-MariaDB
 -- Versi PHP: 7.3.6
 
@@ -43,19 +43,9 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `judul`, `pengarang`, `penerbit`, `kategori`, `isbn`, `stok`) VALUES
-('B0001', 'bobo', 'donal', 'gramedia', 'Sastra', 'tamvan', 100),
-('B0002', 'komik', 'donal', 'erlanggga', 'Sastra', 'Deskripsi', 100),
-('B0003', 'naruto', 'dodo', 'jatang', 'Sastra', 'tamvan', 100),
-('B0004', 'manga dora', 'horas', 'gramed', 'Sastra', '2222 kdksjdkjs', 100),
-('B0005', 'dorami', 'juju', 'nipon', 'Sastra', '999 7777', 100),
-('B0007', 'malin kundang', 'budi', 'gramedia', 'lain-lain', '1222 87878', 100),
-('B0009', 'bahasa indo', 'jened', 'grameda', 'Komik', '2333', 100),
-('B0011', 'cinta dan udsta', 'udin', 'gramed', 'Komik', '23333', 100),
-('B0012', 'gadis', 'asep', 'gramed', 'Sastra', '222', 1000),
-('B0014', 'doa dan ibadah', 'ustad', 'FPI', 'lain-lain', '212', 100),
-('B0015', 'naruto', 'hikigaya', 'gramedia', 'Komik', '1222', 100),
-('B0016', 'gadis', 'asep', 'gramed', 'Sastra', '222', 1000),
-('B0017', 'kiryuu', 'hikigaya', 'xstudio', 'Komik', '1222cff', 100);
+('B0001', 'Bahasa Indonesia', 'Hikigaya', 'Gramedia', 'Pelajaran', '123 777 999', 81),
+('B0002', 'Matematika', 'hikigaya', 'Gramedia', 'Pelajaran', '333 8888', 91),
+('B0003', 'PC komplite', 'hikigaya haciman', 'Erlangga', 'Novel', '3444 666', 86);
 
 -- --------------------------------------------------------
 
@@ -73,11 +63,10 @@ CREATE TABLE `kategori_buku` (
 --
 
 INSERT INTO `kategori_buku` (`id`, `nama_kategori`) VALUES
-('1', 'pelajaran'),
-('2', 'lain-lain'),
-('3', 'Sastra'),
-('4', 'Komik'),
-('5', 'sejarah');
+('A01', 'Komik'),
+('A02', 'Novel'),
+('A03', 'Pelajaran'),
+('A04', 'Sastra');
 
 -- --------------------------------------------------------
 
@@ -121,15 +110,6 @@ CREATE TABLE `pengembalian` (
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `pengembalian`
---
-
-INSERT INTO `pengembalian` (`id_pinjam`, `npm`, `nama`, `id_buku`, `judul`, `jumlah`, `tgl_pinjam`, `tgl_balik`, `status`) VALUES
-('P0001', '201643500179', 'doni', 'B0012', 'gadis', 1, '16 Februari 2020', '16 Februari 2020', 'sudah kembali'),
-('P0002', '201643500199', 'ali abidin', 'B0015', 'naruto', 1, '22 Februari 2020', '22 Februari 2020', 'sudah kembali'),
-('P0003', '201643500111', 'anisa', 'B0001', 'bobo', 1, '16 Februari 2020', '17 Februari 2020', 'sudah kembali');
-
 -- --------------------------------------------------------
 
 --
@@ -150,26 +130,7 @@ CREATE TABLE `pengunjung` (
 --
 
 INSERT INTO `pengunjung` (`id`, `nis`, `nama`, `telpon`, `tanggal`, `jam`) VALUES
-('P01', '2016', 'susi', '021 888', '13-2-2020', '03:30:06'),
-('P02', '2016', 'susi', '021 888', '13-2-2020', '03:31:02'),
-('P03', '201643500199', 'alwi', '0878 7898677', '13-2-2020', '03:33:23'),
-('P04', '201643500199', 'alwi', '0878 7898677', '13-2-2020', '03:41:51'),
-('P05', '201643500199', 'alwi', '0878 7898677', '13-2-2020', '03:42:24'),
-('P06', '201643500199', 'alwi', '0878 7898677', '13-2-2020', '03:43:08'),
-('P07', '201643500199', 'alwi', '0878 7898677', '13-2-2020', '03:44:05'),
-('P08', '2016', 'susi', '021 888', '13-2-2020', '03:44:24'),
-('P09', '201643500199', 'alwi', '0878 7898677', '13-2-2020', '03:44:47'),
-('P10', '2016', 'susi', '021 888', '13-2-2020', '03:44:56'),
-('P11', '2016', 'susi', '021 888', '13-2-2020', '03:45:13'),
-('P12', '2016', 'susi', '021 888', '13-2-2020', '03:45:25'),
-('P13', '2016', 'susi', '021 888', '13-2-2020', '03:56:57'),
-('P14', '2016', 'susi', '021 888', '13-2-2020', '04:04:08'),
-('P15', '2016', 'susi', '021 888', '13-2-2020', '04:04:24'),
-('P16', '2016', 'susi', '021 888', '13-2-2020', '09:42:08'),
-('P17', '201643500199', 'alwi', '0878 7898677', '13-2-2020', '09:42:24'),
-('P18', '2016', 'susi', '021 888', '13-2-2020', '09:44:15'),
-('P19', '2016', 'susi', '021 888', '13-2-2020', '09:47:16'),
-('P20', '201643500199', 'ali abidin', '0878 7898677', '15-2-2020', '22:49:35');
+('P01', '201643500199', 'ali', '0878 7897 0878', '16-2-2020', '22:13:30');
 
 -- --------------------------------------------------------
 
@@ -209,13 +170,10 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nis`, `nama`, `alamat`, `no_hp`, `jenis_kelamin`, `kelas`) VALUES
-('201643500111', 'anisa', 'jakarta utara', '021 3444 7888', 'Perempuan', '11'),
-('201643500122', 'andrian', 'jawa barat', '087878976555', 'Laki-Laki', '11'),
-('201643500133', 'susi', 'jakarta barat', '021 5678088', 'Perempuan', '12'),
-('201643500155', 'alex', 'jakarta barat', '021 788888', 'Laki-Laki', '12'),
-('201643500177', 'dea', 'jakarta timur', '021 7888 7888', 'Perempuan', '12'),
-('201643500179', 'doni', 'jakarta barat', '087878970878', 'Laki-Laki', '12'),
-('201643500199', 'ali abidin', 'jakarta', '0878 7898677', 'Laki-Laki', '12');
+('201643500177', 'Ade Abdul', 'Jakarta Selatan', '021 6666', 'Laki-Laki', '7'),
+('201643500195', 'Mat Syuaeb', 'Jakarta Timur', '021 99999', 'Laki-Laki', '8'),
+('201643500198', 'Anisa ', 'Jawa Barat', '021 3335555', 'Perempuan', '7'),
+('201643599196', 'Muhammad Ali ', 'Jakarta Timur', '021 888 999', 'Laki-Laki', '8');
 
 --
 -- Indexes for dumped tables

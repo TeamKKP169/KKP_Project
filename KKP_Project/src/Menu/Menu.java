@@ -78,6 +78,14 @@ public class Menu extends javax.swing.JFrame {
         a.setVisible(true);
         dispose();
     }
+    
+    
+     private void katalog(){
+     Data.katalog_buku a = new Data.katalog_buku();
+     a.setVisible(true);
+     dispose();
+     
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,6 +104,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -121,7 +130,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 290, 50));
+        jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 290, 50));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -131,7 +140,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 290, 50));
+        jPanel12.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 290, 50));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -141,7 +150,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 290, 50));
+        jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 290, 50));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -151,7 +160,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 280, 50));
+        jPanel12.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 280, 50));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -161,7 +170,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 280, 50));
+        jPanel12.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 280, 50));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -171,7 +180,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 280, 50));
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 280, 50));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
@@ -181,7 +190,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 280, 50));
+        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 280, 50));
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/logout-icon.png"))); // NOI18N
@@ -192,6 +201,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 310, 50));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Documents-icon.png"))); // NOI18N
+        jLabel13.setText("KATALOG BUKU");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+        jPanel12.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 260, 40));
 
         getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 390, 620));
 
@@ -267,6 +285,10 @@ datapengunjung();        // TODO add your handling code here:
 keluar();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+katalog();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel13MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +330,7 @@ keluar();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
