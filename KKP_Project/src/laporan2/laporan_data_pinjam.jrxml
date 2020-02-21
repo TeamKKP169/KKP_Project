@@ -113,8 +113,7 @@ FROM
 FROM
      `pinjaman` pinjaman
 where
-pinjaman.`npm`=$P{npm}
-]]>
+pinjaman.`npm`=$P{npm}]]>
 	</queryString>
 	<field name="pinjaman_nama" class="java.lang.String"/>
 	<field name="pinjaman_judul" class="java.lang.String"/>
@@ -156,7 +155,7 @@ pinjaman.`npm`=$P{npm}
 				<text><![CDATA[NAMA =]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="69" y="200" width="80" height="20" uuid="cdd25304-9640-4108-9481-a5b64580530d"/>
+				<reportElement x="69" y="200" width="119" height="20" uuid="cdd25304-9640-4108-9481-a5b64580530d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -170,7 +169,7 @@ pinjaman.`npm`=$P{npm}
 				<text><![CDATA[NIS     =]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="69" y="180" width="78" height="20" uuid="5fb50c0d-840c-4b16-9dfd-3ec990f6b095"/>
+				<reportElement x="69" y="180" width="119" height="20" uuid="5fb50c0d-840c-4b16-9dfd-3ec990f6b095"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>

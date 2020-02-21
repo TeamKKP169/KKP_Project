@@ -434,7 +434,6 @@ private void loadKategori1() {
         btntambah = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 350));
 
@@ -744,14 +743,6 @@ private void loadKategori1() {
             }
         });
         jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 150, 50));
-
-        jButton9.setText("jButton9");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 10, 0));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 720, 620));
 
@@ -1090,6 +1081,7 @@ String d =
             }
 
         refresh();
+        tambah_data_pengembalian();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_txtjmlhKeyPressed
@@ -1100,27 +1092,6 @@ a.setVisible(true);
 dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-String reportSource = null;
-        String reportDest = null;
-        
-        try {
-            Connection koneksi = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3308/app_book", "root", "@@##bagas");
-            com.mysql.jdbc.Connection c = (com.mysql.jdbc.Connection) koneksi;
-            reportSource = System.getProperty("user.dir") + "/src/laporan/peminjaman.jrxml";
-            reportDest = System.getProperty("user.dir") + "/src/laporan/peminjaman.jasper";
-            
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
-            net.sf.jasperreports.engine.JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, c);
-            JasperExportManager.exportReportToHtmlFile(jasperPrint, reportDest);
-            JasperViewer.viewReport(jasperPrint, false);   
-        }
-        
-        catch (Exception e) {
-            System.out.println(e);
-        }         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
 Menu.Menu a=new Menu.Menu();
@@ -1182,7 +1153,6 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;

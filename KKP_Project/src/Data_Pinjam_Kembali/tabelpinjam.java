@@ -481,10 +481,9 @@ dispose();
             Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
             
         }
-         int baris = tabel.getSelectedRow();
-        String id= tabel.getValueAt(baris, 0).toString();
+         
         try {
-            String sql ="delete from pinjaman where id_pinjam = '"+id+"'"; 
+            String sql ="delete from pinjaman "; 
             java.sql.Connection conn=(Connection)koneksi.koneksi();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
