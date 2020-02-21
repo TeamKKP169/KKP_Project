@@ -644,6 +644,8 @@ String stk = (String) txtstok.getText();
             tabelbuku();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+         
+             
         }
    }  
 catch(Exception b){

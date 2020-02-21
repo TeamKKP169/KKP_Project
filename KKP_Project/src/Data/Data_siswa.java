@@ -5,6 +5,7 @@
  */
 package Data;
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,6 +22,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -29,6 +31,7 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -142,24 +145,7 @@ private void lebarkolong(){
   
   }
   
-  private void cetak(){
-  try{
-         
-            
-         String namaFile = "src/laporan/laporan_data_siswa.jasper";
-         Connection kon3 = (Connection) koneksi.connect();
-             
-            HashMap parameter = new HashMap();
-         
-            File report_file = new File(namaFile);
-            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
-            JasperViewer.viewReport(jasperPrint,false);
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        } 
-  }
+ 
   
   private void edit(){
    int ok = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin mengubah data?", "Konfirmasi Dialog", JOptionPane.YES_NO_OPTION);
@@ -342,13 +328,12 @@ private void lebarkolong(){
         jPanel1.add(btnbaru, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 120, 40));
 
         btncetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
-        btncetak.setText("Print All");
         btncetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncetakActionPerformed(evt);
             }
         });
-        jPanel1.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 130, 40));
+        jPanel1.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 120, 40));
 
         tcari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -543,7 +528,11 @@ lebarkolong();
     }//GEN-LAST:event_txtnohpKeyPressed
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
-cetak();        // TODO add your handling code here:
+//cetak();
+cetak a=new cetak();
+a.setVisible(true);
+dispose();
+// TODO add your handling code here:
     }//GEN-LAST:event_btncetakActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked

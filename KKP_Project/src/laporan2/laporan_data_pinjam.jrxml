@@ -99,6 +99,9 @@ FROM
 			<groupExpression><![CDATA[$F{pinjaman_judul}]]></groupExpression>
 		</group>
 	</subDataset>
+	<parameter name="npm" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      pinjaman.`nama` AS pinjaman_nama,
@@ -108,7 +111,10 @@ FROM
      pinjaman.`tgl_balik` AS pinjaman_tgl_balik,
      pinjaman.`npm` AS pinjaman_npm
 FROM
-     `pinjaman` pinjaman]]>
+     `pinjaman` pinjaman
+where
+pinjaman.`npm`=$P{npm}
+]]>
 	</queryString>
 	<field name="pinjaman_nama" class="java.lang.String"/>
 	<field name="pinjaman_judul" class="java.lang.String"/>

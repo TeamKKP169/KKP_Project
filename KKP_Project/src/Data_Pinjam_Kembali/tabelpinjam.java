@@ -5,6 +5,8 @@
  */
 package Data_Pinjam_Kembali;
 
+import Data.cetak;
+import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,12 +23,16 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 /**
  *
@@ -34,12 +40,13 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class tabelpinjam extends javax.swing.JFrame {
     private DefaultTableModel tabmode;
-
+private final Connection conn = Data.koneksi.connect();
     /**
      * Creates new form tabelpinjam
      */
     public tabelpinjam() {
         initComponents();
+             kosong();
 //        bersihdata();
        // tampil();
         datatable();
@@ -99,32 +106,12 @@ public class tabelpinjam extends javax.swing.JFrame {
     }
    
    
-private void cetaksatudata(){
- int bar = tabel.getSelectedRow();
-     //  String a= (String) tabel.getValueAt(bar, 0);
-      String b=(String) tabel.getValueAt(bar, 1);
-        try{  
-            String namaFile = "src/laporan/lap_jual.jasper";
-            Connection conn = (Connection) koneksi.koneksi();
-             
-            HashMap parameter = new HashMap();
-          //  parameter .put("id_pinjam", txtid.getText());
-           parameter.put("npm",b);
-            File report_file = new File(namaFile);
-            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
-            JasperViewer.viewReport(jasperPrint,false);
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        }catch(Exception e){
-       JOptionPane.showMessageDialog(null,("Data bentrok ! pilih salah satu dan nama yang sama pilih cetak semua"));
-            
-        // bersihdata();  
-        
-         datatable();
-            
-        }    
-      
-          int baris = tabel.getSelectedRow();
+
+
+
+    private void hapus(){
+   {
+           int baris = tabel.getSelectedRow();
         String id= tabel.getValueAt(baris, 0).toString();
         try {
             String sql ="delete from pinjaman where id_pinjam = '"+id+"'"; 
@@ -132,12 +119,20 @@ private void cetaksatudata(){
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Berhasil Dicetak");
+            datatable();
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Gagal di cetak"+e.getMessage());
         }
+        }
+  }
+
+private void kosong(){
+
+txtnis.setText("");
+}
 
 
-}   
+
 private void tampil(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
@@ -175,44 +170,51 @@ private void tampil(){
         }
     }
 
-private void printkabeh(){
-try{  
-            String namaFile = "src/laporan/pinjam.jasper";
-            Connection conn = (Connection) koneksi.koneksi();
-             
-            HashMap parameter = new HashMap();
-          //  parameter .put("id_pinjam", txtid.getText());
-         //   parameter.put("npm",txtnpm.getText());
-            File report_file = new File(namaFile);
-            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
-            JasperViewer.viewReport(jasperPrint,false);
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        }catch(Exception e){
-        JOptionPane.showMessageDialog(null,"gagal");
-            
-        // bersihdata();  
-        
-       datatable();
-            
-        }    
-      
-        String sql = "delete from pinjaman ";
-            try {
-              Connection connection = koneksi.koneksi();
-            Statement stat = connection.createStatement();
-               stat.executeUpdate(sql);
-               // JOptionPane.showMessageDialog(null, "");
-                
-                datatable();
-            }   
-            
-            catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus "+e);
-            }
-         
 
-}
+public void cetakall(){
+    try{
+            HashMap a= new HashMap();
+   
+    panelcetak.removeAll();
+    panelcetak.repaint();
+    panelcetak.revalidate();
+    JasperDesign jdesign = JRXmlLoader.load("src/laporan/laporan_data_pinjam.jrxml");
+    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
+    JRViewer v=new JRViewer(jprint);
+    panelcetak.setLayout(new BorderLayout());
+    panelcetak.add(v);
+    
+    } catch (JRException ex){
+    Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    } 
+
+public void loadreport() throws JRException{
+    try{
+    HashMap a= new HashMap();
+    
+   a.put("npm", txtnis.getText());
+    panelcetak.removeAll();
+    panelcetak.repaint();
+    panelcetak.revalidate();
+    JasperDesign jdesign = JRXmlLoader.load("src/laporan2/laporan_data_pinjam.jrxml");
+    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
+    JRViewer v=new JRViewer(jprint);
+    panelcetak.setLayout(new BorderLayout());
+    panelcetak.add(v);
+    
+    } catch (JRException ex){
+    Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
+    
+    }
+    //JOptionPane.showMessageDialog(null,"gagal");
+    
+    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -230,13 +232,17 @@ try{
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
-        tcari = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        btncetak = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        mainpanel = new javax.swing.JPanel();
+        panelcetak = new javax.swing.JPanel();
+        panelrefresh = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtnis = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        tcari = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -296,49 +302,44 @@ try{
         });
         jScrollPane1.setViewportView(tabel);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1200, 210));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 1180, 140));
 
-        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tcariKeyReleased(evt);
+        mainpanel.setBackground(new java.awt.Color(102, 102, 255));
+        mainpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelcetak.setBackground(new java.awt.Color(51, 255, 204));
+        mainpanel.add(panelcetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 460));
+
+        panelrefresh.setBackground(new java.awt.Color(51, 204, 0));
+        mainpanel.add(panelrefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 460));
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
+        jLabel7.setText("Refresh");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
             }
         });
-        jPanel2.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 310, 40));
+        mainpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 180, 40));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
-        jButton4.setText("bersihdata");
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setText("Print Berdasarkan Nis");
+        mainpanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, 170, 30));
+        mainpanel.add(txtnis, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 180, 40));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
+        jButton2.setText("Print");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 150, 40));
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
-        jButton6.setText("Print 1 data");
-        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, -1, 40));
-
-        btncetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
-        btncetak.setText("Print all");
-        btncetak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncetakActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 130, 40));
-
-        jLabel4.setText("jLabel4");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, 30));
+        mainpanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 250, 130, 40));
 
         jButton1.setFont(new java.awt.Font("Lucida Sans", 0, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
@@ -348,7 +349,29 @@ try{
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 180, 40));
+        mainpanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 60, 180, 40));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
+        jButton4.setText("bersihdata");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        mainpanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 180, 40));
+
+        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tcariKeyReleased(evt);
+            }
+        });
+        mainpanel.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 310, 40));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
+        mainpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, -1, 30));
+
+        jPanel2.add(mainpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 1180, 470));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
@@ -368,6 +391,8 @@ try{
         String g = tabmode.getValueAt(bar, 6).toString();
         String h = tabmode.getValueAt(bar, 7).toString();
         String i = tabmode.getValueAt(bar, 8).toString();
+        
+        txtnis.setText(b);
         
 
     }//GEN-LAST:event_tabelMouseClicked
@@ -420,20 +445,9 @@ try{
         }         // TODO add your handling code here:
     }//GEN-LAST:event_tcariKeyReleased
 
-    private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
- printkabeh();    
- datatable();
-    }//GEN-LAST:event_btncetakActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 bersihdata();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
- cetaksatudata();
- datatable();
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
 dispose();        // TODO add your handling code here:
@@ -444,6 +458,43 @@ Menu.Menu a=new Menu.Menu();
 a.setVisible(true);
 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+tabelpinjam a=new tabelpinjam();
+a.setVisible(true);
+dispose();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+       
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            loadreport();
+         
+            
+// TODO add your handling code here:
+        } catch (JRException ex) {
+            Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+         int baris = tabel.getSelectedRow();
+        String id= tabel.getValueAt(baris, 0).toString();
+        try {
+            String sql ="delete from pinjaman where id_pinjam = '"+id+"'"; 
+            java.sql.Connection conn=(Connection)koneksi.koneksi();
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil Dicetak");
+            datatable();
+            kosong();
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data Gagal di cetak"+e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,20 +535,24 @@ this.dispose();        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btncetak;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel mainpanel;
+    private javax.swing.JPanel panelcetak;
+    private javax.swing.JPanel panelrefresh;
     private javax.swing.JTable tabel;
     private javax.swing.JTextField tcari;
+    private javax.swing.JTextField txtnis;
     // End of variables declaration//GEN-END:variables
 }

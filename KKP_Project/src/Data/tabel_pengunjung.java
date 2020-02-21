@@ -5,6 +5,7 @@
  */
 package Data;
 
+import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,20 +13,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.swing.JRViewer;
+
 
 /**
  *
  * @author hikigaya
  */
+import java.awt.Window;
 public class tabel_pengunjung extends javax.swing.JFrame {
 private final Connection conn = koneksi.connect();
      private DefaultTableModel tabmode;
+ 
+     
     /**
      * Creates new form tabel_pengunjung
      */
@@ -41,8 +55,8 @@ private final Connection conn = koneksi.connect();
        this.setTitle("DATA PENGUNJUNG");
       
     }
-    
-    
+   
+   
     
     
 private void hapusdata(){
@@ -88,7 +102,25 @@ protected void datatabel(){
         }
     }
 
-
+  public void cetakall(){
+    try{
+            HashMap a= new HashMap();
+   
+    panelcetak.removeAll();
+    panelcetak.repaint();
+    panelcetak.revalidate();
+    JasperDesign jdesign = JRXmlLoader.load("src/laporan/pengunjung.jrxml");
+    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
+    JRViewer v=new JRViewer(jprint);
+    panelcetak.setLayout(new BorderLayout());
+    panelcetak.add(v);
+    
+    } catch (JRException ex){
+    Logger.getLogger(tabel_pengunjung.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,6 +131,12 @@ protected void datatabel(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cetak = new javax.swing.JFrame();
+        panelcetak = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -111,6 +149,44 @@ protected void datatabel(){
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+
+        cetak.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        cetak.setTitle("CETAK DATA");
+        cetak.setMinimumSize(new java.awt.Dimension(1000, 700));
+        cetak.setUndecorated(true);
+        cetak.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelcetak.setBackground(new java.awt.Color(102, 102, 255));
+        cetak.getContentPane().add(panelcetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 980, 600));
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("x");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 60, 50));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("CETAK DATA");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 200, 50));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
+
+        cetak.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 50));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -185,17 +261,26 @@ protected void datatabel(){
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 180, 50));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
-        jButton1.setText("PRINT");
+        jButton1.setText("Save As");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 120, 50));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 130, 50));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 50, 40));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
+        jButton3.setText("Print");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 130, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
@@ -272,6 +357,22 @@ dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+cetak.setLocationRelativeTo(null);
+      cetakall();
+        cetak.setVisible(true);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+cetak.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+    cetak.setVisible(false);      // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel8MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -303,21 +404,32 @@ dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new tabel_pengunjung().setVisible(true);
+               
             }
         });
+               
+       
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame cetak;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelcetak;
     private javax.swing.JTable tabel;
     private javax.swing.JTextField tcari;
     // End of variables declaration//GEN-END:variables

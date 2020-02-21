@@ -1040,7 +1040,7 @@ String d =
                                 java.sql.Connection kon1 = (Connection) koneksi.koneksi();
                                 java.sql.PreparedStatement mts = kon1.prepareStatement(query1);
                                 mts.execute();
-                                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+                                JOptionPane.showMessageDialog(null, "Peminjaman  Berhasil");
 
                                 try{
                                     String query2 = "select*from buku where id_buku = '"+txtidbk.getText()+"'";
@@ -1059,7 +1059,7 @@ String d =
                                             java.sql.PreparedStatement pst=conn1.prepareStatement(sql3);
                                             pst.execute();
                                         } catch (Exception e) {
-                                            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
+                                            JOptionPane.showMessageDialog(null, "Proses Data Gagal"+e.getMessage());
                                         }
 
                                     }

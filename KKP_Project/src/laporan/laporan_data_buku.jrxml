@@ -116,140 +116,153 @@ FROM
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="74" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="120" splitType="Stretch"/>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="49" height="20" uuid="5eb10370-21e3-47c7-a20b-cfaa72691374"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="508" y="0" width="47" height="20" uuid="d03f7483-ca22-4641-8d39-5bd644a8b491"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="49" y="0" width="185" height="20" uuid="232e5ad3-be79-40a2-ad29-a09c2eebd686"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="311" y="0" width="69" height="20" uuid="50828585-7a18-4ef9-b70b-b71c3bea1816"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="234" y="0" width="77" height="20" uuid="156cfc74-6278-4846-b178-9bcda02cc9e8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="449" y="0" width="59" height="20" uuid="79cd337e-1ebc-4e5a-aa09-da9934170ccc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="380" y="0" width="69" height="20" uuid="e6c669ce-ae64-4254-84ee-094727409929"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="49" height="20" uuid="40d57c0f-b84d-4100-adfc-bc006a7c8620"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[KODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="49" y="0" width="185" height="20" uuid="357dae78-07b3-4097-b5b8-5012beb96a45"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUDUL BUKU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="0" width="79" height="20" uuid="d56eb352-ab71-4481-898c-1b0353690fec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PENGARANG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="0" width="69" height="20" uuid="28afb9da-93cb-4d35-9c5e-2dc59fed7fc2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PENERBIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="0" width="67" height="20" uuid="53a3b688-8c9b-4171-8c55-c419b9c5abd0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[KATEGORI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="0" width="59" height="20" uuid="84633cf8-3c0c-4ad7-97c9-50607d5afc86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISBN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="508" y="0" width="47" height="20" uuid="aceb99cd-31a5-4336-b6c0-b80f7fc91b00"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUMLAH]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
-			<componentElement>
-				<reportElement key="table 1" style="table 1" x="-12" y="-113" width="537" height="80" uuid="e4b9db61-c20e-4e4c-8ea7-e9e2e0c4e82e"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="databuku" uuid="9219293c-956c-45b2-a727-9af7042e38c7">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="56" uuid="70371d20-2481-497c-b53e-d587d89adfbb">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="51" height="30" uuid="e3bae5d6-913b-40f5-8925-9a3548b83f2d"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[KODE]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="51" height="20" uuid="334f418a-0016-44db-bec8-4b030c0912b9"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{buku_id_buku}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="226" uuid="2cc968f6-df56-4d18-b964-2e7634d7c90b">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="226" height="30" uuid="df0d634a-5621-4543-928c-3460f06acef7"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[JUDUL BUKU]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="226" height="20" uuid="a0fbe3c4-89d6-428d-907c-4a9be75f868b"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{buku_judul}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="77" uuid="d2587071-669a-4e4a-bfb1-2368fb4e21a1">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="75" height="30" uuid="d5bb58ba-e509-40c6-9a55-a039088bd84d"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[PENGARANG]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="75" height="20" uuid="362dea6d-3741-4f36-8d1a-ec14cdb02912"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{buku_pengarang}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="60" uuid="f8563419-eb9f-4206-a595-a06f773a0ff3">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="56" height="30" uuid="f901e41a-faaa-495e-b253-45bd26f97bc8"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[PENERBIT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="56" height="20" uuid="81da9f8f-c458-441b-ae0e-d61037a55e9a"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{buku_penerbit}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="59" uuid="f73db808-fb8c-4c4e-8de1-1a9450282e3c">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="56" height="30" uuid="75101401-279f-496a-bdc7-c7f9c401b2fe"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[KATEGORI]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="56" height="20" uuid="baa74854-d0a8-48b5-bc60-95cdd7698f97"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{buku_kategori}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="52" uuid="1601e3d0-555b-46cc-8c2c-87979f0b4a1b">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="50" height="30" uuid="da43f062-6b3c-4fa6-a1f6-33a8658ac9db"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[ISBN]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="50" height="20" uuid="eda4c0c5-8b97-416b-91d9-1367827fc0c2"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{buku_isbn}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="49" uuid="e5a4e4f5-9c08-417d-b91c-672d69b13a94">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="48" height="30" uuid="3e01a173-0d3d-4903-9d24-f5392c7d233b"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[JUMLAH]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="48" height="20" uuid="cfa869c1-df0e-4975-88e5-741a3237f175"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{buku_stok}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="449" y="0" width="59" height="20" uuid="da991086-5386-4cc1-a82d-55eae41abba6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="49" y="0" width="185" height="20" uuid="d7f60cf6-34f1-48a7-abd7-606e00c600ce"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="311" y="0" width="69" height="20" uuid="35c51772-62b3-45ca-a205-47f743edf3cd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="508" y="0" width="47" height="20" uuid="5d54d70b-87cf-493f-924e-6dae882cd232"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="49" height="20" uuid="19b3e610-d1a2-4922-8be5-809f758f33ef"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="234" y="0" width="77" height="20" uuid="bebb61fb-621b-452a-a24a-3fe7fd5ffe90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="380" y="0" width="69" height="20" uuid="d096ca0b-a099-48bd-ba75-ad0ba3d9b55a"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="49" height="20" uuid="a88a6d95-e0ce-4e50-87d0-bbb8340385b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{buku_id_buku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="0" width="188" height="20" uuid="ef1253ba-3b14-4f27-a38c-e8836f71cdb9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{buku_judul}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="76" height="20" uuid="49416cca-e7ea-4228-b8f9-5d4895174e64"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{buku_pengarang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="0" width="69" height="20" uuid="0a6bf602-e45a-4233-acb7-525272b47cd7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{buku_penerbit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="0" width="67" height="20" uuid="82273eaf-de23-4776-8134-142c2c3ed30a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{buku_kategori}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="449" y="0" width="59" height="20" uuid="226a2d16-e034-4d36-8b70-c154fe67df24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{buku_isbn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="0" width="47" height="20" uuid="6faab436-bc3f-476d-82b5-37ee0d10fc3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{buku_stok}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
+	<columnFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="237" y="30" width="46" height="20" uuid="98321be1-6410-441e-b34d-cb1d1d2b76ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="449" y="30" width="100" height="20" uuid="919d5cd7-1c3c-41ff-9858-a300612f2ed7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
 </jasperReport>

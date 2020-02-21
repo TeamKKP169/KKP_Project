@@ -102,7 +102,7 @@ FROM
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
      siswa.`nis` AS nis,
      siswa.`nama` AS nama,
