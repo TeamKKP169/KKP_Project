@@ -5,6 +5,7 @@
  */
 package Data;
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,10 +26,16 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.text.*;
 import java.awt.print.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JTable;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -242,6 +249,25 @@ catch(Exception b){
         } 
   }
   
+  private void printbuku(){
+    try{
+    HashMap a= new HashMap();
+  panelcetak.removeAll();
+  panelcetak.repaint();
+  panelcetak.revalidate();
+    InputStream file = getClass().getResourceAsStream("/laporan/laporan_data_buku.jrxml");
+    JasperDesign jdesign = JRXmlLoader.load(file);
+    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
+    JRViewer v=new JRViewer(jprint);
+  panelcetak.setLayout(new BorderLayout());
+  panelcetak.add(v);
+    
+    } catch (JRException ex){
+    Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+  
   private void edit(){
     {
             String sql = "update buku set"
@@ -289,6 +315,13 @@ catch(Exception b){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        panelsatu = new javax.swing.JPanel();
+        mainpanel = new javax.swing.JPanel();
+        panelcetak = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -320,11 +353,52 @@ catch(Exception b){
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
+        jDialog1.setLocationByPlatform(true);
+        jDialog1.setMinimumSize(new java.awt.Dimension(1009, 700));
+        jDialog1.setUndecorated(true);
+        jDialog1.setPreferredSize(new java.awt.Dimension(1009, 700));
+        jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("x");
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 50, 40));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
+
+        jDialog1.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 970, 60));
+
+        panelsatu.setBackground(new java.awt.Color(102, 102, 255));
+        panelsatu.setLayout(new java.awt.CardLayout());
+
+        mainpanel.setBackground(new java.awt.Color(102, 102, 255));
+        mainpanel.setLayout(new java.awt.CardLayout());
+
+        panelcetak.setBackground(new java.awt.Color(102, 102, 255));
+        mainpanel.add(panelcetak, "card2");
+
+        panelsatu.add(mainpanel, "card2");
+
+        jDialog1.getContentPane().add(panelsatu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 970, 560));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(1280, 700));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
@@ -583,7 +657,10 @@ tabmode.getDataVector().removeAllElements();
     }//GEN-LAST:event_tcariKeyReleased
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
-cetak();       // TODO add your handling code here:
+jDialog1.setLocationRelativeTo(null);
+      printbuku();
+        jDialog1.setVisible(true);  
+// TODO add your handling code here:
     }//GEN-LAST:event_btncetakActionPerformed
 
     private void txtstokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstokKeyPressed
@@ -694,6 +771,14 @@ dispose();        // TODO add your handling code here:
 datasiswa();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+   jDialog1.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+   jDialog1.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel13MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -739,9 +824,12 @@ datasiswa();        // TODO add your handling code here:
     private javax.swing.JComboBox<String> cmbkat;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -752,8 +840,12 @@ datasiswa();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lblid;
+    private javax.swing.JPanel mainpanel;
+    private javax.swing.JPanel panelcetak;
+    private javax.swing.JPanel panelsatu;
     private javax.swing.JTable tabel1;
     private javax.swing.JTextField tcari;
     private javax.swing.JTextField txtdesc;

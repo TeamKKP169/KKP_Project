@@ -104,12 +104,13 @@ FROM
      pinjaman.`judul` AS pinjaman_judul,
      pinjaman.`jumlah` AS pinjaman_jumlah,
      pinjaman.`tgl_pinjam` AS pinjaman_tgl_pinjam,
-     pinjaman.`tgl_balik` AS pinjaman_tgl_balik
+     pinjaman.`tgl_balik` AS pinjaman_tgl_balik,
+     gambar.`logo` AS gambar_logo
 FROM
-     `pinjaman` pinjaman
+     `pinjaman` pinjaman,
+     `gambar` gambar
 WHERE
-
-pinjaman.`npm`=$P{NIS}]]>
+     pinjaman.`npm` = $P{NIS}]]>
 	</queryString>
 	<field name="pinjaman_npm" class="java.lang.String"/>
 	<field name="pinjaman_nama" class="java.lang.String"/>
@@ -117,6 +118,7 @@ pinjaman.`npm`=$P{NIS}]]>
 	<field name="pinjaman_jumlah" class="java.lang.Integer"/>
 	<field name="pinjaman_tgl_pinjam" class="java.lang.String"/>
 	<field name="pinjaman_tgl_balik" class="java.lang.String"/>
+	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -145,7 +147,7 @@ pinjaman.`npm`=$P{NIS}]]>
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="74" height="66" uuid="7eaf46f6-08f6-446b-95e4-bf62b2b718a2"/>
-				<imageExpression><![CDATA["/home/hikigaya/github/KKP_Project/KKP_Project/src/image_logo/perintis.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

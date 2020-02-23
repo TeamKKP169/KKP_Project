@@ -108,20 +108,25 @@ FROM
 		<field name="pinjaman_tgl_balik" class="java.lang.String"/>
 		<field name="pinjaman_jumlah" class="java.lang.Integer"/>
 	</subDataset>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
      pinjaman.`nama` AS nama,
      pinjaman.`judul` AS judul,
      pinjaman.`jumlah` AS jumlah,
      pinjaman.`tgl_pinjam` AS tgl_pinjam,
-     pinjaman.`tgl_balik` AS tgl_balik
+     pinjaman.`tgl_balik` AS tgl_balik,
+     gambar.`logo` AS gambar_logo
 FROM
-     `pinjaman` pinjaman]]>
+     `pinjaman` pinjaman,
+     `gambar` gambar]]>
 	</queryString>
 	<field name="nama" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="judul" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jumlah" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tgl_pinjam" class="java.lang.String">
@@ -130,9 +135,7 @@ FROM
 	<field name="tgl_balik" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="jumlah" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -153,7 +156,7 @@ FROM
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="73" height="73" uuid="53c1e984-6ae0-4c59-901d-cd655d0892b1"/>
-				<imageExpression><![CDATA["/home/hikigaya/github/KKP_Project/KKP_Project/src/image_logo/perintis.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

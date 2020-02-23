@@ -157,8 +157,7 @@ int year = cal.get(Calendar.YEAR);
 
 
 
-txttanggal.setText(
-        day + "-" + 
+txttanggal.setText(day + "-" + 
         (month + 1) 
            + "-" + year);
 }

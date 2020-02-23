@@ -109,11 +109,13 @@ FROM
      pinjaman.`jumlah` AS pinjaman_jumlah,
      pinjaman.`tgl_pinjam` AS pinjaman_tgl_pinjam,
      pinjaman.`tgl_balik` AS pinjaman_tgl_balik,
-     pinjaman.`npm` AS pinjaman_npm
+     pinjaman.`npm` AS pinjaman_npm,
+     gambar.`logo` AS gambar_logo
 FROM
-     `pinjaman` pinjaman
-where
-pinjaman.`npm`=$P{npm}]]>
+     `pinjaman` pinjaman,
+     `gambar` gambar
+WHERE
+     pinjaman.`npm` = $P{npm}]]>
 	</queryString>
 	<field name="pinjaman_nama" class="java.lang.String"/>
 	<field name="pinjaman_judul" class="java.lang.String"/>
@@ -121,6 +123,7 @@ pinjaman.`npm`=$P{npm}]]>
 	<field name="pinjaman_tgl_pinjam" class="java.lang.String"/>
 	<field name="pinjaman_tgl_balik" class="java.lang.String"/>
 	<field name="pinjaman_npm" class="java.lang.String"/>
+	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -139,10 +142,6 @@ pinjaman.`npm`=$P{npm}]]>
 				<reportElement x="56" y="81" width="354" height="20" uuid="60a9668b-0761-4bec-986a-ae517d8cf099"/>
 				<text><![CDATA[www.smkperintis1depok.sch.id    email :/smk1perdep39@yahoo.co.id]]></text>
 			</staticText>
-			<image>
-				<reportElement x="16" y="15" width="90" height="60" uuid="7a1cc24a-fd45-44d9-8f9d-bfb32c291f9c"/>
-				<imageExpression><![CDATA["/home/hikigaya/github/KKP_Project/KKP_Project/src/image_logo/perintis.jpeg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="129" y="61" width="199" height="20" uuid="cff79c38-f022-49a8-ab7e-5f63f1976b74"/>
 				<text><![CDATA[Kec.Pancoran Mas-Kota Depok 16431]]></text>
@@ -175,6 +174,10 @@ pinjaman.`npm`=$P{npm}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pinjaman_npm}]]></textFieldExpression>
 			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="16" y="10" width="85" height="71" uuid="ebac3ec3-a702-4a8e-bb9f-b696bfd3129d"/>
+				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>

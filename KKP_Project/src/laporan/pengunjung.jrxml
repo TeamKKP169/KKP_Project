@@ -10,9 +10,11 @@
      pengunjung.`nama` AS pengunjung_nama,
      pengunjung.`telpon` AS pengunjung_telpon,
      pengunjung.`tanggal` AS pengunjung_tanggal,
-     pengunjung.`jam` AS pengunjung_jam
+     pengunjung.`jam` AS pengunjung_jam,
+     gambar.`logo` AS gambar_logo
 FROM
-     `pengunjung` pengunjung]]>
+     `pengunjung` pengunjung,
+     `gambar` gambar]]>
 	</queryString>
 	<field name="pengunjung_id" class="java.lang.String"/>
 	<field name="pengunjung_nis" class="java.lang.String"/>
@@ -20,6 +22,7 @@ FROM
 	<field name="pengunjung_telpon" class="java.lang.String"/>
 	<field name="pengunjung_tanggal" class="java.lang.String"/>
 	<field name="pengunjung_jam" class="java.lang.String"/>
+	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -40,7 +43,7 @@ FROM
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
 				<reportElement x="0" y="0" width="89" height="60" uuid="3b7aa415-0ca2-4714-85ff-9c66a7b4c4ad"/>
-				<imageExpression><![CDATA["/home/hikigaya/github/KKP_Project/KKP_Project/src/laporan/perintis.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

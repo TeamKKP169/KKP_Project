@@ -13,12 +13,13 @@
      siswa.`alamat` AS siswa_alamat,
      siswa.`no_hp` AS siswa_no_hp,
      siswa.`jenis_kelamin` AS siswa_jenis_kelamin,
-     siswa.`kelas` AS siswa_kelas
+     siswa.`kelas` AS siswa_kelas,
+     gambar.`logo` AS gambar_logo
 FROM
-     `siswa` siswa
-where
- siswa.`kelas` =$P{kelas}
-]]>
+     `siswa` siswa,
+     `gambar` gambar
+WHERE
+     siswa.`kelas` = $P{kelas}]]>
 	</queryString>
 	<field name="siswa_nis" class="java.lang.String"/>
 	<field name="siswa_nama" class="java.lang.String"/>
@@ -26,6 +27,7 @@ where
 	<field name="siswa_no_hp" class="java.lang.String"/>
 	<field name="siswa_jenis_kelamin" class="java.lang.String"/>
 	<field name="siswa_kelas" class="java.lang.String"/>
+	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -46,7 +48,7 @@ where
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
 				<reportElement x="-4" y="-5" width="82" height="84" uuid="84012826-d584-4aed-884e-80cbc628ce94"/>
-				<imageExpression><![CDATA["/home/hikigaya/NetBeansProjects/laporan/perintis.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -188,6 +190,6 @@ where
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="46" splitType="Stretch"/>
 	</summary>
 </jasperReport>

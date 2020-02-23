@@ -109,9 +109,11 @@ FROM
      siswa.`alamat` AS alamat,
      siswa.`no_hp` AS no_hp,
      siswa.`jenis_kelamin` AS jenis_kelamin,
-     siswa.`kelas` AS kelas
+     siswa.`kelas` AS kelas,
+     gambar.`logo` AS gambar_logo
 FROM
-     `siswa` siswa]]>
+     `siswa` siswa,
+     `gambar` gambar]]>
 	</queryString>
 	<field name="nis" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -131,6 +133,7 @@ FROM
 	<field name="kelas" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -150,8 +153,8 @@ FROM
 				<text><![CDATA[www.smkperintis1depok.sch.id    email :/smk1perdep39@yahoo.co.id]]></text>
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="-11" y="10" width="79" height="50" uuid="a7a1a4f5-05b6-42df-9653-043a1a800192"/>
-				<imageExpression><![CDATA["/home/hikigaya/github/KKP_Project/KKP_Project/src/image_logo/perintis.jpeg"]]></imageExpression>
+				<reportElement x="0" y="10" width="72" height="50" uuid="fdeb51fe-f8ce-4e76-8a77-63e3a5470d8d"/>
+				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

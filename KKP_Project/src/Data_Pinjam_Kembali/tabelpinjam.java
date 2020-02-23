@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -214,6 +215,28 @@ public void loadreport() throws JRException{
     
     
     }
+
+public void load(){
+try{
+    HashMap a= new HashMap();
+    a.put("npm", txtnis.getText());
+    panelcetak.removeAll();
+    panelcetak.repaint();
+    panelcetak.revalidate();
+    InputStream file = getClass().getResourceAsStream("/laporan2/laporan_data_pinjam.jrxml");
+//    JasperDesign jdesign = JRXmlLoader.load("src/laporan/data_siswa.jrxml");
+    JasperDesign jdesign = JRXmlLoader.load(file);
+    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
+    JRViewer v=new JRViewer(jprint);
+    panelcetak.setLayout(new BorderLayout());
+    panelcetak.add(v);
+    
+    } catch (JRException ex){
+    Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
+    
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -472,15 +495,10 @@ dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            loadreport();
-         
-            
+        load();
+        
+        
 // TODO add your handling code here:
-        } catch (JRException ex) {
-            Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
          
         try {
             String sql ="delete from pinjaman "; 

@@ -8,6 +8,7 @@ package Data;
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -54,7 +55,9 @@ private final Connection conn = koneksi.connect();
     panelcetak.removeAll();
     panelcetak.repaint();
     panelcetak.revalidate();
-    JasperDesign jdesign = JRXmlLoader.load("src/laporan/data_siswa.jrxml");
+    InputStream file = getClass().getResourceAsStream("/laporan/data_siswa.jrxml");
+//    JasperDesign jdesign = JRXmlLoader.load("src/laporan/data_siswa.jrxml");
+    JasperDesign jdesign = JRXmlLoader.load(file);
     JasperReport jreport = JasperCompileManager.compileReport(jdesign);
     JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
     JRViewer v=new JRViewer(jprint);
@@ -63,18 +66,19 @@ private final Connection conn = koneksi.connect();
     
     } catch (JRException ex){
     Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
+    
     }
     
     }
      
     public void cetakall(){
     try{
-            HashMap a= new HashMap();
-   
+    HashMap a= new HashMap();
     panelcetak.removeAll();
     panelcetak.repaint();
     panelcetak.revalidate();
-    JasperDesign jdesign = JRXmlLoader.load("src/laporan/siswa.jrxml");
+    InputStream file = getClass().getResourceAsStream("/laporan/siswa.jrxml");
+    JasperDesign jdesign = JRXmlLoader.load(file);
     JasperReport jreport = JasperCompileManager.compileReport(jdesign);
     JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
     JRViewer v=new JRViewer(jprint);

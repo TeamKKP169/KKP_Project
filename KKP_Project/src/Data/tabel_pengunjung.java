@@ -35,6 +35,7 @@ import net.sf.jasperreports.swing.JRViewer;
  * @author hikigaya
  */
 import java.awt.Window;
+import java.io.InputStream;
 public class tabel_pengunjung extends javax.swing.JFrame {
 private final Connection conn = koneksi.connect();
      private DefaultTableModel tabmode;
@@ -121,6 +122,25 @@ protected void datatabel(){
     }
     
     } 
+  
+  public void print(){
+   try{
+    HashMap a= new HashMap();
+   panelcetak.removeAll();
+    panelcetak.repaint();
+   panelcetak.revalidate();
+    InputStream file = getClass().getResourceAsStream("/laporan/pengunjung.jrxml");
+    JasperDesign jdesign = JRXmlLoader.load(file);
+    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
+    JRViewer v=new JRViewer(jprint);
+  panelcetak.setLayout(new BorderLayout());
+   panelcetak.add(v);
+    
+    } catch (JRException ex){
+    Logger.getLogger(tabel_pengunjung.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -360,7 +380,7 @@ dispose();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
 cetak.setLocationRelativeTo(null);
-      cetakall();
+     print();
         cetak.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
