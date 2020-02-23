@@ -216,7 +216,7 @@ public void loadreport() throws JRException{
     
     }
 
-public void load(){
+public void load()throws JRException{
 try{
     HashMap a= new HashMap();
     a.put("npm", txtnis.getText());
@@ -495,7 +495,11 @@ dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        load();
+        try {
+            load();
+        } catch (JRException ex) {
+            Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
 // TODO add your handling code here:

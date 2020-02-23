@@ -249,7 +249,7 @@ catch(Exception b){
         } 
   }
   
-  private void printbuku(){
+  private void printbuku()throws JRException{
     try{
     HashMap a= new HashMap();
   panelcetak.removeAll();
@@ -658,7 +658,11 @@ tabmode.getDataVector().removeAllElements();
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
 jDialog1.setLocationRelativeTo(null);
-      printbuku();
+        try {
+            printbuku();
+        } catch (JRException ex) {
+            Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jDialog1.setVisible(true);  
 // TODO add your handling code here:
     }//GEN-LAST:event_btncetakActionPerformed
