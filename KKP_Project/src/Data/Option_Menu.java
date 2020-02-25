@@ -127,7 +127,7 @@ try {
             java.sql.ResultSet sql = line_statemen.executeQuery("select * from login where password='" + jPasswordField1.getText() + "'");
             if (sql.next()) {
                 if (jPasswordField1.getText().equals(sql.getString("password"))) {
-                    JOptionPane.showMessageDialog(null, "Selamat Datang ");
+                    JOptionPane.showMessageDialog(null, "succes log ");
                     this.dispose();
                     new Menu.Menu().setVisible(true);
                 } else {
