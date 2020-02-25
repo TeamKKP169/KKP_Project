@@ -5,7 +5,7 @@
  */
 package Data_Pinjam_Kembali;
 
-import Data.cetak;
+
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -41,7 +41,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class tabelpinjam extends javax.swing.JFrame {
     private DefaultTableModel tabmode;
-private final Connection conn = Data.koneksi.connect();
+
     /**
      * Creates new form tabelpinjam
      */
@@ -172,70 +172,33 @@ private void tampil(){
     }
 
 
-public void cetakall(){
-    try{
-            HashMap a= new HashMap();
-   
-    panelcetak.removeAll();
-    panelcetak.repaint();
-    panelcetak.revalidate();
-    JasperDesign jdesign = JRXmlLoader.load("src/laporan/laporan_data_pinjam.jrxml");
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
-    JRViewer v=new JRViewer(jprint);
-    panelcetak.setLayout(new BorderLayout());
-    panelcetak.add(v);
-    
-    } catch (JRException ex){
-    Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    } 
 
-public void loadreport() throws JRException{
-    try{
-    HashMap a= new HashMap();
-    
-   a.put("npm", txtnis.getText());
-    panelcetak.removeAll();
-    panelcetak.repaint();
-    panelcetak.revalidate();
-    JasperDesign jdesign = JRXmlLoader.load("src/laporan2/laporan_data_pinjam.jrxml");
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
-    JRViewer v=new JRViewer(jprint);
-    panelcetak.setLayout(new BorderLayout());
-    panelcetak.add(v);
-    
-    } catch (JRException ex){
-    Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
-    
-    }
-    //JOptionPane.showMessageDialog(null,"gagal");
-    
-    
-    }
 
-public void load()throws JRException{
+
+
+public void printpinjam()throws JRException{
 try{
+    Connection kon = (Connection) koneksi.koneksi();
     HashMap a= new HashMap();
     a.put("npm", txtnis.getText());
-    panelcetak.removeAll();
-    panelcetak.repaint();
-    panelcetak.revalidate();
+    mainpanel.removeAll();
+    mainpanel.repaint();
+    mainpanel.revalidate();
     InputStream file = getClass().getResourceAsStream("/laporan2/laporan_data_pinjam.jrxml");
 //    JasperDesign jdesign = JRXmlLoader.load("src/laporan/data_siswa.jrxml");
     JasperDesign jdesign = JRXmlLoader.load(file);
     JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, kon);
     JRViewer v=new JRViewer(jprint);
-    panelcetak.setLayout(new BorderLayout());
-    panelcetak.add(v);
+    mainpanel.setLayout(new BorderLayout());
+    mainpanel.add(v);
     
     } catch (JRException ex){
     Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
     
-    }
+    }   catch (SQLException ex) {
+            Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
 
     /**
@@ -258,14 +221,14 @@ try{
         mainpanel = new javax.swing.JPanel();
         panelcetak = new javax.swing.JPanel();
         panelrefresh = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtnis = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        tcari = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        tcari = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -336,6 +299,29 @@ try{
         panelrefresh.setBackground(new java.awt.Color(51, 204, 0));
         mainpanel.add(panelrefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 460));
 
+        jPanel2.add(mainpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 700, 470));
+
+        jButton1.setFont(new java.awt.Font("Lucida Sans", 0, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
+        jButton1.setText("   +Input Pinjaman  ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 180, 40));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
+        jButton4.setText("bersihdata");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 280, 180, 40));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
         jLabel7.setText("Refresh");
@@ -344,11 +330,22 @@ try{
                 jLabel7MouseClicked(evt);
             }
         });
-        mainpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 180, 40));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, 180, 40));
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel8.setText("Print Berdasarkan Nis");
-        mainpanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, 170, 30));
-        mainpanel.add(txtnis, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 180, 40));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, 250, 30));
+        jPanel2.add(txtnis, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, 180, 40));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 190, -1, 30));
+
+        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tcariKeyReleased(evt);
+            }
+        });
+        jPanel2.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, 410, 40));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton2.setText("Print");
@@ -362,39 +359,7 @@ try{
                 jButton2ActionPerformed(evt);
             }
         });
-        mainpanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 250, 130, 40));
-
-        jButton1.setFont(new java.awt.Font("Lucida Sans", 0, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
-        jButton1.setText("   +Input Pinjaman  ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        mainpanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 60, 180, 40));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
-        jButton4.setText("bersihdata");
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        mainpanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 180, 40));
-
-        tcari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tcariKeyReleased(evt);
-            }
-        });
-        mainpanel.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 310, 40));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
-        mainpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, -1, 30));
-
-        jPanel2.add(mainpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 1180, 470));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 410, 130, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
@@ -496,7 +461,7 @@ dispose();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            load();
+            printpinjam();
         } catch (JRException ex) {
             Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
         }

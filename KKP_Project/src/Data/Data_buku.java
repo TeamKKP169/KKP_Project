@@ -229,39 +229,21 @@ catch(Exception b){
   dispose();
   }
   
-  private void cetak(){
   
-  try{
-             
-         String namaFile = "src/laporan/laporan_data_buku.jasper";
-         Connection kon3 = (Connection) koneksi.connect();
-             
-            HashMap parameter = new HashMap();
-         
-            File report_file = new File(namaFile);
-            JasperReport  jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter,conn);
-            JasperViewer.viewReport(jasperPrint,false);
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage());
-             lebarKolom();
-        } 
-  }
   
   private void printbuku()throws JRException{
     try{
     HashMap a= new HashMap();
-  panelcetak.removeAll();
-  panelcetak.repaint();
-  panelcetak.revalidate();
+  panelsatu.removeAll();
+  panelsatu.repaint();
+  panelsatu.revalidate();
     InputStream file = getClass().getResourceAsStream("/laporan/laporan_data_buku.jrxml");
     JasperDesign jdesign = JRXmlLoader.load(file);
     JasperReport jreport = JasperCompileManager.compileReport(jdesign);
     JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
     JRViewer v=new JRViewer(jprint);
-  panelcetak.setLayout(new BorderLayout());
-  panelcetak.add(v);
+  panelsatu.setLayout(new BorderLayout());
+  panelsatu.add(v);
     
     } catch (JRException ex){
     Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
@@ -320,8 +302,6 @@ catch(Exception b){
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         panelsatu = new javax.swing.JPanel();
-        mainpanel = new javax.swing.JPanel();
-        panelcetak = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -356,7 +336,6 @@ catch(Exception b){
         jDialog1.setLocationByPlatform(true);
         jDialog1.setMinimumSize(new java.awt.Dimension(1009, 700));
         jDialog1.setUndecorated(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(1009, 700));
         jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
@@ -384,16 +363,7 @@ catch(Exception b){
 
         panelsatu.setBackground(new java.awt.Color(102, 102, 255));
         panelsatu.setLayout(new java.awt.CardLayout());
-
-        mainpanel.setBackground(new java.awt.Color(102, 102, 255));
-        mainpanel.setLayout(new java.awt.CardLayout());
-
-        panelcetak.setBackground(new java.awt.Color(102, 102, 255));
-        mainpanel.add(panelcetak, "card2");
-
-        panelsatu.add(mainpanel, "card2");
-
-        jDialog1.getContentPane().add(panelsatu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 970, 560));
+        jDialog1.getContentPane().add(panelsatu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 970, 550));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -461,15 +431,16 @@ catch(Exception b){
         jScrollPane1.setViewportView(tabel1);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1240, 220));
-        jPanel2.add(txtjudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 350, 40));
+        jPanel2.add(txtjudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 350, 40));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("JUDUL BUKU");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
-        jPanel2.add(txtpengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 350, 40));
-        jPanel2.add(txtpenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 350, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        jPanel2.add(txtpengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 350, 40));
+        jPanel2.add(txtpenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 350, 40));
 
         cmbkat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori" }));
-        jPanel2.add(cmbkat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 140, 40));
+        jPanel2.add(cmbkat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 140, 40));
 
         jButton3.setText("Tambah Kategori");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -477,8 +448,8 @@ catch(Exception b){
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 180, 40));
-        jPanel2.add(txtdesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, 350, 40));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 180, 40));
+        jPanel2.add(txtdesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 350, 40));
 
         tcari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -495,7 +466,7 @@ catch(Exception b){
                 btncetakActionPerformed(evt);
             }
         });
-        jPanel2.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 120, 40));
+        jPanel2.add(btncetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 120, 40));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton4.setText("Save as");
@@ -505,14 +476,14 @@ catch(Exception b){
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 120, 40));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, 120, 40));
 
         txtstok.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtstokKeyPressed(evt);
             }
         });
-        jPanel2.add(txtstok, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 350, 40));
+        jPanel2.add(txtstok, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 350, 40));
 
         btnsave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
         btnsave.setText("Simpan");
@@ -522,7 +493,7 @@ catch(Exception b){
                 btnsaveActionPerformed(evt);
             }
         });
-        jPanel2.add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 570, 140, 40));
+        jPanel2.add(btnsave, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 570, 140, 40));
 
         btnnew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new.png"))); // NOI18N
         btnnew.setText("Refresh");
@@ -532,7 +503,7 @@ catch(Exception b){
                 btnnewActionPerformed(evt);
             }
         });
-        jPanel2.add(btnnew, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 570, 140, 40));
+        jPanel2.add(btnnew, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 140, 40));
 
         btnedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/edit.png"))); // NOI18N
         btnedit.setText("Edit");
@@ -542,7 +513,7 @@ catch(Exception b){
                 btneditActionPerformed(evt);
             }
         });
-        jPanel2.add(btnedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 120, 40));
+        jPanel2.add(btnedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 120, 40));
 
         btnhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
         btnhapus.setText("Hapus");
@@ -552,23 +523,28 @@ catch(Exception b){
                 btnhapusActionPerformed(evt);
             }
         });
-        jPanel2.add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 120, 40));
-        jPanel2.add(lblid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 130, 20));
+        jPanel2.add(btnhapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 120, 40));
+        jPanel2.add(lblid, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 130, 20));
 
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setText("STOK");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("ISBN");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("KATEGORI");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("PENERBIT");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("PENGARANG");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 250, -1, 40));
@@ -847,8 +823,6 @@ datasiswa();        // TODO add your handling code here:
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lblid;
-    private javax.swing.JPanel mainpanel;
-    private javax.swing.JPanel panelcetak;
     private javax.swing.JPanel panelsatu;
     private javax.swing.JTable tabel1;
     private javax.swing.JTextField tcari;

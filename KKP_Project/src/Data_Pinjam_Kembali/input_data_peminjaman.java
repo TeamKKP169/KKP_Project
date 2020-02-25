@@ -608,26 +608,33 @@ private void loadKategori1() {
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setText("TANGGAL PINJAM");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("TANGGAL KEMBALI");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("NIS");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("NAMA");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("ID BUKU");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("JUDUL BUKU");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("JUMLAH");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, -1, -1));
 
         txtjmlh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -700,7 +707,7 @@ private void loadKategori1() {
         });
         jPanel2.add(tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 41, 170, 40));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("...");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -708,7 +715,7 @@ private void loadKategori1() {
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 40, 40));
 
-        jButton4.setText("jButton4");
+        jButton4.setText("...");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -961,127 +968,11 @@ String d =
     }//GEN-LAST:event_jScrollPane3MousePressed
 
     private void txtjmlhKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtjmlhKeyPressed
- if (evt.getKeyCode()== KeyEvent.VK_ENTER)
-        if(tgl.getDate().equals("")&&tglbalik.getDate().equals("")){
-            JOptionPane.showMessageDialog(null,"Tidak Boleh Ada yang kosong");
-        }
-        else{
-            try{
-                String aidi1;
-                aidi1=txtidbk.getText();
-                String query = "select*from buku where id_buku = '"+aidi1+"'";
-                java.sql.Connection kon = (Connection) koneksi.koneksi();
-                java.sql.Statement stm = kon.createStatement();
-                java.sql.ResultSet data = stm.executeQuery(query);
+ if (evt.getKeyCode()== KeyEvent.VK_ENTER){
+tambah_data_pinjam();
 
-                while(data.next()){
-                    String jmlh = txtjmlh.getText();
-                    String stk = data.getString(7);
-                    int stok = Integer.parseInt(stk);
-                    int jumlah = Integer.parseInt(jmlh);
-                    if(stok == 0){
-                        JOptionPane.showMessageDialog(null,"Stok Buku Telah Kosong!");
-                    }
-                    else if(jumlah>stok){
-                        JOptionPane.showMessageDialog(null,"Jumlah Buku Tidak Cukup!");
-                    }
-                    else{
-
-                        try{
-                            String sql1="select*from pinjaman order by id_pinjam desc";
-                            java.sql.Connection conn=(Connection) koneksi.koneksi();
-                            java.sql.Statement stm1 = conn.createStatement();
-                            java.sql.ResultSet res1 = stm1.executeQuery(sql1);
-                            String aidi;
-                            if(res1.next()){
-
-                                String no=res1.getString("id_pinjam").substring(1);
-                                String id = ""+(Integer.parseInt(no)+1);
-                                String nol=null;
-                                if(id.length()==1){
-                                    nol="000";
-                                }
-                                else if(id.length()==2){
-                                    nol="00";
-                                }
-                                else if(id.length()==3){
-                                    nol="0";
-                                }
-                                else if(id.length()==4){
-                                    nol="";
-                                }
-                                aidi = "P"+nol+id;
-                            }
-                            else{
-                                aidi = "P0001";
-                            }
-                            try {
-
-                          
-                                String query1 = "INSERT INTO pinjaman VALUES "
-                                + "('" + aidi+"','"+txtnpm.getText()
-                                + "','" + txtnm.getText()
-                                + "','" + txtidbk.getText()
-                                + "','" + txtjdl.getText()
-                                + "','" + txtjmlh.getText()
-                                + "','" + pinjam
-                                + "','" + balik
-                               
-                                + "','" + "Belum Kembali"+ "')";
-                                java.sql.Connection kon1 = (Connection) koneksi.koneksi();
-                                java.sql.PreparedStatement mts = kon1.prepareStatement(query1);
-                                mts.execute();
-                                JOptionPane.showMessageDialog(null, "Peminjaman  Berhasil");
-
-                                try{
-                                    String query2 = "select*from buku where id_buku = '"+txtidbk.getText()+"'";
-                                    java.sql.Connection kon2 = (Connection) koneksi.koneksi();
-                                    java.sql.Statement st = kon2.createStatement();
-                                    java.sql.ResultSet data2 = st.executeQuery(query2);
-
-                                    while(data2.next()){
-                                        int jumlah1= Integer.parseInt(data2.getString(7));
-                                        int jumlahpinjam = Integer.parseInt(txtjmlh.getText());
-                                        int total = jumlah1-jumlahpinjam;
-                                        try {
-                                            String sql3 ="UPDATE buku SET stok = '"+total
-                                            +"' WHERE id_buku = '"+txtidbk.getText()+"'";
-                                            java.sql.Connection conn1=(Connection)koneksi.koneksi();
-                                            java.sql.PreparedStatement pst=conn1.prepareStatement(sql3);
-                                            pst.execute();
-                                        } catch (Exception e) {
-                                            JOptionPane.showMessageDialog(null, "Proses Data Gagal"+e.getMessage());
-                                        }
-
-                                    }
-                                }
-                                catch(Exception b){
-                                    JOptionPane.showMessageDialog(null, b.getMessage());
-                                }
-
-                                new input_data_peminjaman().setVisible(true);
-                                dispose();
-
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(this, e.getMessage());
-                            }
-
-                        }
-                        catch(Exception b){
-                            JOptionPane.showMessageDialog(null,b.getMessage());
-                        }
-
-                    }
-
-                }
-
-            }
-            catch(Exception b){
-                JOptionPane.showMessageDialog(null,b.getMessage());
-            }
-
-        refresh();
-        tambah_data_pengembalian();
+tambah_data_pengembalian();
+refresh();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_txtjmlhKeyPressed

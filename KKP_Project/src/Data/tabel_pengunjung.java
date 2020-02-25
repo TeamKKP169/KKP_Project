@@ -371,7 +371,7 @@ dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-Menu.Menu a= new Menu.Menu();
+Menu.Menu a=new Menu.Menu();
 a.setVisible(true);
 dispose();
 // TODO add your handling code here:

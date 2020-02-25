@@ -21,8 +21,8 @@ public class koneksi{
  public static Connection conn;
     public static Connection connect() { 
 try {
- String url = "jdbc:mysql://localhost:3306/app_book";
-conn = (Connection) DriverManager.getConnection (url, "root","");
+ String url = "jdbc:mysql://localhost:3308/app_book";
+conn = (Connection) DriverManager.getConnection (url, "root","@@##bagas");
 
 
 }catch (SQLException ex) {

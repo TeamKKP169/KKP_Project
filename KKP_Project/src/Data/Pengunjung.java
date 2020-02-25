@@ -85,7 +85,7 @@ public Timer t = null;
     }
     
     private void login(){
-    Menu_login a=new Menu_login();
+ Menu_login a=new Menu_login();
 a.setVisible(true);
 dispose();
     }
@@ -387,21 +387,25 @@ public void autoNumber() {
         });
         jPanel2.add(txtnis, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 440, 49));
 
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setText("NIS");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 80, 40));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 80, 40));
         jPanel2.add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 440, 52));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("NAMA");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 70, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 70, 40));
         jPanel2.add(txttelpon, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 440, 50));
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("TELPON");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 40));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 90, 40));
         jPanel2.add(txttanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 200, 51));
         jPanel2.add(txtjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, 220, 50));
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("TANGGAL");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 70, 40));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 100, 40));
         jPanel2.add(txtkd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 200, 40));
 
         jButton1.setText("DAFTAR ANGGOTA");
@@ -423,11 +427,15 @@ public void autoNumber() {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 142, 50));
 
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("jLabel10");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 60, 30));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 140, 30));
 
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("jLabel9");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 80, 30));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 130, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 670, 670));
 

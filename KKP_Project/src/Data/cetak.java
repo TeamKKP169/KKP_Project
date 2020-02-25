@@ -198,9 +198,10 @@ private final Connection conn = koneksi.connect();
 
         panelsatu.add(mainpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 134, 960, 500));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Kelas");
-        panelsatu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 50, 20));
-        panelsatu.add(txtkelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 170, 40));
+        panelsatu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 80, 20));
+        panelsatu.add(txtkelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 170, 40));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton1.setText("Print");
@@ -210,15 +211,16 @@ private final Connection conn = koneksi.connect();
                 jButton1ActionPerformed(evt);
             }
         });
-        panelsatu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 130, 40));
+        panelsatu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 130, 40));
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Refresh");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        panelsatu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 80, 30));
+        panelsatu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 80, 30));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton2.setText("Print All");
@@ -228,7 +230,7 @@ private final Connection conn = koneksi.connect();
                 jButton2ActionPerformed(evt);
             }
         });
-        panelsatu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 130, 40));
+        panelsatu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 130, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -225,7 +225,7 @@ jTextField1KeyReleased();        // TODO add your handling code here:
     }//GEN-LAST:event_tcariKeyReleased
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-Menu.Menu a= new Menu.Menu();
+Option_Menu a=new Option_Menu();
 a.setVisible(true);
 dispose();
 // TODO add your handling code here:
