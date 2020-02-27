@@ -88,7 +88,7 @@ private void tampil(){
         model.addColumn("judul");
         model.addColumn("Jumlah");
         model.addColumn("Tgl Pinjam");
-        model.addColumn("Tgl Kembali");
+        model.addColumn("Tgl Harus Kembali");
         
         model.addColumn("Status");
         try{
@@ -138,6 +138,69 @@ private void kosong(){
   btnbatal.setEnabled(false);
   btnproses.setEnabled(false);
 }
+
+private void proses(){
+ try {
+            String status = "sudah kembali";
+            String sql ="UPDATE pengembalian SET status = '"+txtstatus.getText()
+
+            +"' WHERE id_pinjam = '"+txtid.getText()+"'";
+            Connection conn=(Connection)koneksi.koneksi();
+           PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Berhasil");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
+        }
+        try{
+
+            String id= txtid.getText();
+
+            String query = "select id_buku from pengembalian where id_pinjam = '"+id+"'";
+            Connection kon = (Connection) koneksi.koneksi();
+           Statement stm = kon.createStatement();
+          ResultSet data = stm.executeQuery(query);
+
+            while(data.next()){
+                String aidi = data.getString("id_buku");
+                try{
+                    String query1 = "select*from buku where id_buku = '"+aidi+"'";
+                    java.sql.Connection kon1 = (Connection) koneksi.koneksi();
+                    java.sql.Statement st = kon1.createStatement();
+                    java.sql.ResultSet data1 = st.executeQuery(query1);
+
+                    while(data1.next()){
+                        int baris = jTable1.getSelectedRow();
+                        String jmlh= jTable1.getValueAt(baris, 5).toString();
+                        int jumlah= Integer.parseInt(data1.getString(7));
+                        int jumlahpinjam = Integer.parseInt(jmlh);
+                        int total = jumlah+jumlahpinjam;
+                        try {
+                            String sql1 ="UPDATE buku SET stok = '"+total
+                            +"' WHERE id_buku = '"+aidi+"'";
+                            java.sql.Connection conn1=(Connection)koneksi.koneksi();
+                            java.sql.PreparedStatement pst=conn1.prepareStatement(sql1);
+                            pst.execute();
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
+                        }
+
+                    }
+                }
+                catch(Exception b){
+                    JOptionPane.showMessageDialog(null, b.getMessage());
+                }
+            }
+
+        }
+        catch(Exception b){
+
+        }
+        tampil();
+        //datatable();
+        kosong();
+
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,6 +228,11 @@ private void kosong(){
         btnproses = new javax.swing.JButton();
         btnbatal = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -228,9 +296,9 @@ private void kosong(){
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 1210, 220));
-        jPanel2.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 219, 50));
-        jPanel2.add(txtpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 219, 50));
-        jPanel2.add(txtblk, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 219, 50));
+        jPanel2.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 219, 50));
+        jPanel2.add(txtpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 219, 50));
+        jPanel2.add(txtblk, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 219, 50));
 
         tglkembali.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -242,7 +310,7 @@ private void kosong(){
                 tglkembaliKeyPressed(evt);
             }
         });
-        jPanel2.add(tglkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 210, 50));
+        jPanel2.add(tglkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 210, 50));
 
         tcari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -250,7 +318,7 @@ private void kosong(){
             }
         });
         jPanel2.add(tcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(866, 260, 370, 40));
-        jPanel2.add(txttelat, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 140, 50));
+        jPanel2.add(txttelat, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, 140, 50));
 
         btnproses.setText("Proses");
         btnproses.addActionListener(new java.awt.event.ActionListener() {
@@ -258,7 +326,7 @@ private void kosong(){
                 btnprosesActionPerformed(evt);
             }
         });
-        jPanel2.add(btnproses, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 220, 50));
+        jPanel2.add(btnproses, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 220, 50));
 
         btnbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
         btnbatal.setText("batal");
@@ -268,10 +336,30 @@ private void kosong(){
                 btnbatalActionPerformed(evt);
             }
         });
-        jPanel2.add(btnbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 110, 50));
+        jPanel2.add(btnbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 110, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Search-icon.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, 50, 60));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setText("ID");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setText("Tanggal Pinjam");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setText("Tanggal Harus Kembali");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel9.setText("Tanggal pengembalian");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel10.setText("Total Terlambat");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1260, 620));
 
@@ -377,65 +465,8 @@ else{
     }//GEN-LAST:event_tglkembaliKeyPressed
 
     private void btnprosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprosesActionPerformed
-        try {
-            String status = "sudah kembali";
-            String sql ="UPDATE pengembalian SET status = '"+txtstatus.getText()
-
-            +"' WHERE id_pinjam = '"+txtid.getText()+"'";
-            Connection conn=(Connection)koneksi.koneksi();
-           PreparedStatement pst=conn.prepareStatement(sql);
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Berhasil");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
-        }
-        try{
-
-            String id= txtid.getText();
-
-            String query = "select id_buku from pengembalian where id_pinjam = '"+id+"'";
-            Connection kon = (Connection) koneksi.koneksi();
-           Statement stm = kon.createStatement();
-          ResultSet data = stm.executeQuery(query);
-
-            while(data.next()){
-                String aidi = data.getString("id_buku");
-                try{
-                    String query1 = "select*from buku where id_buku = '"+aidi+"'";
-                    java.sql.Connection kon1 = (Connection) koneksi.koneksi();
-                    java.sql.Statement st = kon1.createStatement();
-                    java.sql.ResultSet data1 = st.executeQuery(query1);
-
-                    while(data1.next()){
-                        int baris = jTable1.getSelectedRow();
-                        String jmlh= jTable1.getValueAt(baris, 5).toString();
-                        int jumlah= Integer.parseInt(data1.getString(7));
-                        int jumlahpinjam = Integer.parseInt(jmlh);
-                        int total = jumlah+jumlahpinjam;
-                        try {
-                            String sql1 ="UPDATE buku SET stok = '"+total
-                            +"' WHERE id_buku = '"+aidi+"'";
-                            java.sql.Connection conn1=(Connection)koneksi.koneksi();
-                            java.sql.PreparedStatement pst=conn1.prepareStatement(sql1);
-                            pst.execute();
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
-                        }
-
-                    }
-                }
-                catch(Exception b){
-                    JOptionPane.showMessageDialog(null, b.getMessage());
-                }
-            }
-
-        }
-        catch(Exception b){
-
-        }
-        tampil();
-        //datatable();
-        kosong();
+      proses();
+     
         // TODO add your handling code here:
     }//GEN-LAST:event_btnprosesActionPerformed
 
@@ -527,10 +558,15 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JButton btnbatal;
     private javax.swing.JButton btnproses;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

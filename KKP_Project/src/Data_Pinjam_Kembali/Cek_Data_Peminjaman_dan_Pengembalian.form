@@ -49,9 +49,9 @@
                   <Component id="jLabel1" min="-2" pref="57" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="287" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="387" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="372" max="32767" attributes="0"/>
+                  <EmptySpace pref="482" max="32767" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -60,8 +60,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabel1" pref="50" max="32767" attributes="0"/>
               <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel5" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -101,7 +105,7 @@
               <Font name="Dialog" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="RIWAYAT PEMINJAMAN DAN PENGEMBALIAN"/>
+            <Property name="text" type="java.lang.String" value="RIWAYAT PEMINJAMAN "/>
           </Properties>
         </Component>
       </SubComponents>
