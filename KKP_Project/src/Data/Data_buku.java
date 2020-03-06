@@ -5,37 +5,35 @@
  */
 package Data;
 
+import static Data.koneksi.connect;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
-import java.text.*;
-import java.awt.print.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JTable;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.swing.JRViewer;
+
+
 
 /**
  *
@@ -44,6 +42,7 @@ import net.sf.jasperreports.swing.JRViewer;
 public class Data_buku extends javax.swing.JFrame {
     private final Connection conn = koneksi.connect();
      private DefaultTableModel tabmode;
+     private String logopo="/laporan/logokkp.jpeg"; 
 
     /**
      * Creates new form Data_buku
@@ -231,24 +230,30 @@ catch(Exception b){
   
   
   
-  private void printbuku()throws JRException{
-    try{
-    HashMap a= new HashMap();
+ 
+  
+  private void print(){
+  try{
   panelsatu.removeAll();
-  panelsatu.repaint();
-  panelsatu.revalidate();
-    InputStream file = getClass().getResourceAsStream("/laporan/laporan_data_buku.jrxml");
-    JasperDesign jdesign = JRXmlLoader.load(file);
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
-    JRViewer v=new JRViewer(jprint);
-  panelsatu.setLayout(new BorderLayout());
-  panelsatu.add(v);
-    
-    } catch (JRException ex){
-    Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    panelsatu.repaint();
+    panelsatu.revalidate();
+  URL in=this.getClass().getResource("/laporan/laporan_data_buku.jasper");
+  JasperReport report=(JasperReport)JRLoader.loadObject(in);
+  Map parameter = new HashMap();
+parameter.clear();
+
+parameter.put("logo", this.getClass().getResourceAsStream(logopo));
+
+JasperPrint jprint = JasperFillManager.fillReport(report, parameter, connect());
+JRViewer v=new JRViewer(jprint);
+ panelsatu.setLayout(new BorderLayout());
+    panelsatu.add(v);
+  
+  }     catch (JRException ex) {
+            Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
+        }
   }
+  
   
   private void edit(){
     {
@@ -440,11 +445,6 @@ catch(Exception b){
         jPanel2.add(txtpenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 350, 40));
 
         cmbkat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori" }));
-        cmbkat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbkatActionPerformed(evt);
-            }
-        });
         jPanel2.add(cmbkat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 140, 40));
 
         jButton3.setText("Tambah Kategori");
@@ -639,11 +639,10 @@ tabmode.getDataVector().removeAllElements();
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
 jDialog1.setLocationRelativeTo(null);
-        try {
-            printbuku();
-        } catch (JRException ex) {
-            Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       print();
+           // printbuku();
+      
+        
         jDialog1.setVisible(true);  
 // TODO add your handling code here:
     }//GEN-LAST:event_btncetakActionPerformed
@@ -763,10 +762,6 @@ datasiswa();        // TODO add your handling code here:
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
    jDialog1.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel13MouseClicked
-
-    private void cmbkatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbkatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbkatActionPerformed
 
     /**
      * @param args the command line arguments

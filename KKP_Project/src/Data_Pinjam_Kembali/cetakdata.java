@@ -31,7 +31,6 @@ public class cetakdata extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 700));
-        setPreferredSize(new java.awt.Dimension(1280, 700));
 
         panelcetak.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -58,7 +57,7 @@ public class cetakdata extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(121, 121, 121)
                 .addComponent(panelcetak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );

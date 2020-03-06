@@ -5,42 +5,38 @@
  */
 package Data_Pinjam_Kembali;
 
-
+import static Data.koneksi.connect;
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import javax.swing.JOptionPane;
+import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import static javax.swing.JOptionPane.YES_NO_OPTION;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.swing.JRViewer;
-import net.sf.jasperreports.view.JasperViewer;
+
+
+
 /**
  *
  * @author hikigaya
  */
 public class tabelpinjam extends javax.swing.JFrame {
     private DefaultTableModel tabmode;
+    private String logopo="/laporan2/logokkp.jpeg"; 
 
     /**
      * Creates new form tabelpinjam
@@ -82,7 +78,7 @@ public class tabelpinjam extends javax.swing.JFrame {
         tabel.setModel(tabmode);
         String sql = "select * from pinjaman order by id_pinjam asc";
         try {
-            java.sql.Connection kon = (Connection) koneksi.koneksi();
+          Connection kon = (Connection) koneksi.koneksi();
             java.sql.Statement stm = kon.createStatement();
             ResultSet hasil = stm.executeQuery(sql);
             while(hasil.next()){
@@ -176,27 +172,22 @@ private void tampil(){
 
 
 
-public void printpinjam()throws JRException{
+public void printpinjam(){
 try{
-    Connection kon = (Connection) koneksi.koneksi();
-    HashMap a= new HashMap();
-    a.put("npm", txtnis.getText());
-    mainpanel.removeAll();
-    mainpanel.repaint();
-    mainpanel.revalidate();
-    InputStream file = getClass().getResourceAsStream("/laporan2/laporan_data_pinjam.jrxml");
-//    JasperDesign jdesign = JRXmlLoader.load("src/laporan/data_siswa.jrxml");
-    JasperDesign jdesign = JRXmlLoader.load(file);
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, kon);
-    JRViewer v=new JRViewer(jprint);
-    mainpanel.setLayout(new BorderLayout());
-    mainpanel.add(v);
-    
-    } catch (JRException ex){
-    Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
-    
-    }   catch (SQLException ex) {
+ panelcetak.removeAll();
+    panelcetak.repaint();
+    panelcetak.revalidate();
+    URL in=this.getClass().getResource("/laporan2/laporan_data_pinjam.jasper");
+    JasperReport report=(JasperReport)JRLoader.loadObject(in);
+    Map parameter = new HashMap();
+parameter.clear();
+parameter.put("npm", txtnis.getText());
+parameter.put("logo", this.getClass().getResourceAsStream(logopo));
+JasperPrint jprint = JasperFillManager.fillReport(report, parameter, connect());
+JRViewer v=new JRViewer(jprint);
+ panelcetak.setLayout(new BorderLayout());
+    panelcetak.add(v);
+}       catch (JRException ex) {
             Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
@@ -460,11 +451,9 @@ dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            printpinjam();
-        } catch (JRException ex) {
-            Logger.getLogger(tabelpinjam.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
+  printpinjam();
+        
         
         
 // TODO add your handling code here:

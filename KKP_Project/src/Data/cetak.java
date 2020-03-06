@@ -5,13 +5,11 @@
  */
 package Data;
 
-import static Data.koneksi.conn;
 import static Data.koneksi.connect;
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -25,14 +23,12 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.swing.JRViewer;
 
 
-
-
 /**
  *
  * @author hikigaya
  */
 public class cetak extends javax.swing.JFrame {
-private final Connection conn = koneksi.connect();
+
     
     private String logopo="/laporan/logokkp.jpeg"; 
     /**
@@ -50,7 +46,7 @@ private final Connection conn = koneksi.connect();
             this.setTitle("PRINT DATA");
     }
     
-   public void print(){
+    public void print(){
     try{
      panelcetak.removeAll();
     panelcetak.repaint();
@@ -62,19 +58,20 @@ parameter.clear();
 parameter.put("kls", txtkelas.getText());
 parameter.put("logo", this.getClass().getResourceAsStream(logopo));
 
-JasperPrint jprint = JasperFillManager.fillReport(report, parameter, conn);
+JasperPrint jprint = JasperFillManager.fillReport(report, parameter, connect());
 JRViewer v=new JRViewer(jprint);
  panelcetak.setLayout(new BorderLayout());
-    panelcetak.add(v);
+ panelcetak.add(v);
     
     }   catch (JRException ex) {
             Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }
+   
      
   public void print2(){
-    try{
+   try{
      panelcetak.removeAll();
     panelcetak.repaint();
     panelcetak.revalidate();
@@ -85,10 +82,10 @@ parameter.clear();
 
 parameter.put("logo", this.getClass().getResourceAsStream(logopo));
 
-JasperPrint jprint = JasperFillManager.fillReport(report, parameter, conn);
+JasperPrint jprint = JasperFillManager.fillReport(report, parameter, connect());
 JRViewer v=new JRViewer(jprint);
  panelcetak.setLayout(new BorderLayout());
- panelcetak.add(v);
+    panelcetak.add(v);
     
     }   catch (JRException ex) {
             Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,6 +118,7 @@ JRViewer v=new JRViewer(jprint);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 720));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1000, 720));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -137,6 +135,7 @@ JRViewer v=new JRViewer(jprint);
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CETAK LAPORAN DATA SISWA");
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -205,6 +204,7 @@ JRViewer v=new JRViewer(jprint);
         panelsatu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 80, 20));
         panelsatu.add(txtkelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 170, 40));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton1.setText("Print");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +223,7 @@ JRViewer v=new JRViewer(jprint);
         });
         panelsatu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 80, 30));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton2.setText("Print All");
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -309,7 +310,6 @@ dispose();
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(cetak.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

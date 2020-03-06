@@ -623,12 +623,10 @@ refresh();
     }//GEN-LAST:event_jProgressBar1InputMethodTextChanged
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
-dispose();        // TODO add your handling code here:
+login();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel18MouseClicked
 
     private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
-login();
-
 //datasiswa();       // TODO add your handling code here:
     }//GEN-LAST:event_jLabel20MouseClicked
 

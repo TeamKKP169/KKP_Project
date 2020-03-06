@@ -5,6 +5,7 @@
  */
 package Data;
 
+import static Data.koneksi.connect;
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -36,9 +37,13 @@ import net.sf.jasperreports.swing.JRViewer;
  */
 import java.awt.Window;
 import java.io.InputStream;
+import java.net.URL;
+import java.util.Map;
+import net.sf.jasperreports.engine.util.JRLoader;
 public class tabel_pengunjung extends javax.swing.JFrame {
 private final Connection conn = koneksi.connect();
      private DefaultTableModel tabmode;
+      private String logopo="/laporan/logokkp.jpeg"; 
  
      
     /**
@@ -103,45 +108,30 @@ protected void datatabel(){
         }
     }
 
-  public void cetakall(){
-    try{
-            HashMap a= new HashMap();
-   
-    panelcetak.removeAll();
+ 
+  
+ 
+private void print(){
+  try{
+  panelcetak.removeAll();
     panelcetak.repaint();
     panelcetak.revalidate();
-    JasperDesign jdesign = JRXmlLoader.load("src/laporan/pengunjung.jrxml");
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
-    JRViewer v=new JRViewer(jprint);
-    panelcetak.setLayout(new BorderLayout());
-    panelcetak.add(v);
-    
-    } catch (JRException ex){
-    Logger.getLogger(tabel_pengunjung.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    } 
-  
-  public void print(){
-   try{
-    HashMap a= new HashMap();
-   panelcetak.removeAll();
-    panelcetak.repaint();
-   panelcetak.revalidate();
-    InputStream file = getClass().getResourceAsStream("/laporan/pengunjung.jrxml");
-    JasperDesign jdesign = JRXmlLoader.load(file);
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
-    JRViewer v=new JRViewer(jprint);
-  panelcetak.setLayout(new BorderLayout());
-   panelcetak.add(v);
-    
-    } catch (JRException ex){
-    Logger.getLogger(tabel_pengunjung.class.getName()).log(Level.SEVERE, null, ex);
-    }
-  }
+  URL in=this.getClass().getResource("/laporan/pengunjung.jasper");
+  JasperReport report=(JasperReport)JRLoader.loadObject(in);
+  Map parameter = new HashMap();
+parameter.clear();
 
+parameter.put("logo", this.getClass().getResourceAsStream(logopo));
+
+JasperPrint jprint = JasperFillManager.fillReport(report, parameter, connect());
+JRViewer v=new JRViewer(jprint);
+ panelcetak.setLayout(new BorderLayout());
+ panelcetak.add(v);
+  
+  }     catch (JRException ex) {
+            Logger.getLogger(Data_buku.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
