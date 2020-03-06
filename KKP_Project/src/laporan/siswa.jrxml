@@ -102,6 +102,7 @@ FROM
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[SELECT
      siswa.`nis` AS nis,
@@ -109,11 +110,9 @@ FROM
      siswa.`alamat` AS alamat,
      siswa.`no_hp` AS no_hp,
      siswa.`jenis_kelamin` AS jenis_kelamin,
-     siswa.`kelas` AS kelas,
-     gambar.`logo` AS gambar_logo
+     siswa.`kelas` AS kelas
 FROM
-     `siswa` siswa,
-     `gambar` gambar]]>
+     `siswa` siswa]]>
 	</queryString>
 	<field name="nis" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -133,7 +132,6 @@ FROM
 	<field name="kelas" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -153,8 +151,8 @@ FROM
 				<text><![CDATA[www.smkperintis1depok.sch.id    email :/smk1perdep39@yahoo.co.id]]></text>
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="0" y="10" width="72" height="50" uuid="fdeb51fe-f8ce-4e76-8a77-63e3a5470d8d"/>
-				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
+				<reportElement x="0" y="0" width="66" height="70" uuid="387a9448-5a96-499e-abcf-bebfa08af1b0"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

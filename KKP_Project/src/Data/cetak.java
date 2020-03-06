@@ -5,26 +5,27 @@
  */
 package Data;
 
+import static Data.koneksi.conn;
+import static Data.koneksi.connect;
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JRDesignQuery;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.swing.JRViewer;
-import net.sf.jasperreports.view.JasperViewer;
+
+
+
 
 /**
  *
@@ -32,6 +33,8 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class cetak extends javax.swing.JFrame {
 private final Connection conn = koneksi.connect();
+    
+    private String logopo="/laporan/logokkp.jpeg"; 
     /**
      * Creates new form cetak
      */
@@ -47,49 +50,50 @@ private final Connection conn = koneksi.connect();
             this.setTitle("PRINT DATA");
     }
     
-    
-     public void loadreport() throws JRException{
+   public void print(){
     try{
-    HashMap a= new HashMap();
-    a.put("kelas", txtkelas.getText());
-    panelcetak.removeAll();
+     panelcetak.removeAll();
     panelcetak.repaint();
     panelcetak.revalidate();
-    InputStream file = getClass().getResourceAsStream("/laporan/data_siswa.jrxml");
-//    JasperDesign jdesign = JRXmlLoader.load("src/laporan/data_siswa.jrxml");
-    JasperDesign jdesign = JRXmlLoader.load(file);
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
-    JRViewer v=new JRViewer(jprint);
-    panelcetak.setLayout(new BorderLayout());
+URL in=this.getClass().getResource("/laporan/data_siswa.jasper");
+ JasperReport report=(JasperReport)JRLoader.loadObject(in);
+ Map parameter = new HashMap();
+parameter.clear();
+parameter.put("kls", txtkelas.getText());
+parameter.put("logo", this.getClass().getResourceAsStream(logopo));
+
+JasperPrint jprint = JasperFillManager.fillReport(report, parameter, conn);
+JRViewer v=new JRViewer(jprint);
+ panelcetak.setLayout(new BorderLayout());
     panelcetak.add(v);
     
-    } catch (JRException ex){
-    Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
-    
-    }
+    }   catch (JRException ex) {
+            Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
     }
      
-    public void cetakall(){
+  public void print2(){
     try{
-    HashMap a= new HashMap();
-    panelcetak.removeAll();
+     panelcetak.removeAll();
     panelcetak.repaint();
     panelcetak.revalidate();
-    InputStream file = getClass().getResourceAsStream("/laporan/siswa.jrxml");
-    JasperDesign jdesign = JRXmlLoader.load(file);
-    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
-    JRViewer v=new JRViewer(jprint);
-    panelcetak.setLayout(new BorderLayout());
-    panelcetak.add(v);
+URL in=this.getClass().getResource("/laporan/siswa.jasper");
+ JasperReport report=(JasperReport)JRLoader.loadObject(in);
+ Map parameter = new HashMap();
+parameter.clear();
+
+parameter.put("logo", this.getClass().getResourceAsStream(logopo));
+
+JasperPrint jprint = JasperFillManager.fillReport(report, parameter, conn);
+JRViewer v=new JRViewer(jprint);
+ panelcetak.setLayout(new BorderLayout());
+ panelcetak.add(v);
     
-    } catch (JRException ex){
-    Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    } 
+    }   catch (JRException ex) {
+            Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,7 +121,6 @@ private final Connection conn = koneksi.connect();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 720));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 720));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -134,7 +137,6 @@ private final Connection conn = koneksi.connect();
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CETAK LAPORAN DATA SISWA");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -203,7 +205,6 @@ private final Connection conn = koneksi.connect();
         panelsatu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 80, 20));
         panelsatu.add(txtkelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 170, 40));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton1.setText("Print");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +223,6 @@ private final Connection conn = koneksi.connect();
         });
         panelsatu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 80, 30));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/print.png"))); // NOI18N
         jButton2.setText("Print All");
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -269,16 +269,12 @@ dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  
-        try {
-        loadreport();        // TODO add your handling code here:
-    } catch (JRException ex) {
-        Logger.getLogger(cetak.class.getName()).log(Level.SEVERE, null, ex);
-    }
+print();  
+   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-cetakall();        // TODO add your handling code here:
+print2();       // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -313,6 +309,7 @@ dispose();
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(cetak.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

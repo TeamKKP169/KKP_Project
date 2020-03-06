@@ -20,9 +20,9 @@ public class koneksi {
     private static Connection mysqlconfig;
     public static Connection koneksi()throws SQLException{
         try {
-            String url="jdbc:mysql://localhost:3306/app_book"; //url database
+            String url="jdbc:mysql://localhost:3308/app_book"; //url database
             String user="root"; //user database
-            String pass=""; //password database
+            String pass="@@##bagas"; //password database
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             mysqlconfig=DriverManager.getConnection(url, user, pass);            
         } catch (Exception e) {

@@ -440,6 +440,11 @@ catch(Exception b){
         jPanel2.add(txtpenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 350, 40));
 
         cmbkat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori" }));
+        cmbkat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbkatActionPerformed(evt);
+            }
+        });
         jPanel2.add(cmbkat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 140, 40));
 
         jButton3.setText("Tambah Kategori");
@@ -758,6 +763,10 @@ datasiswa();        // TODO add your handling code here:
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
    jDialog1.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void cmbkatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbkatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbkatActionPerformed
 
     /**
      * @param args the command line arguments

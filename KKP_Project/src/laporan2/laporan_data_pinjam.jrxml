@@ -102,6 +102,7 @@ FROM
 	<parameter name="npm" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[SELECT
      pinjaman.`nama` AS pinjaman_nama,
@@ -109,11 +110,9 @@ FROM
      pinjaman.`jumlah` AS pinjaman_jumlah,
      pinjaman.`tgl_pinjam` AS pinjaman_tgl_pinjam,
      pinjaman.`tgl_balik` AS pinjaman_tgl_balik,
-     pinjaman.`npm` AS pinjaman_npm,
-     gambar.`logo` AS gambar_logo
+     pinjaman.`npm` AS pinjaman_npm
 FROM
-     `pinjaman` pinjaman,
-     `gambar` gambar
+     `pinjaman` pinjaman
 WHERE
      pinjaman.`npm` = $P{npm}]]>
 	</queryString>
@@ -123,7 +122,6 @@ WHERE
 	<field name="pinjaman_tgl_pinjam" class="java.lang.String"/>
 	<field name="pinjaman_tgl_balik" class="java.lang.String"/>
 	<field name="pinjaman_npm" class="java.lang.String"/>
-	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -175,8 +173,8 @@ WHERE
 				<textFieldExpression><![CDATA[$F{pinjaman_npm}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="16" y="10" width="85" height="71" uuid="ebac3ec3-a702-4a8e-bb9f-b696bfd3129d"/>
-				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
+				<reportElement x="16" y="11" width="75" height="50" uuid="3775bb7f-240b-4477-97f9-250f286c472e"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

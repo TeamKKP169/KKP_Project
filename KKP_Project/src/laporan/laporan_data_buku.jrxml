@@ -72,6 +72,7 @@ FROM
 		<field name="buku_isbn" class="java.lang.String"/>
 		<field name="buku_stok" class="java.lang.Integer"/>
 	</subDataset>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[SELECT
      buku.`id_buku` AS buku_id_buku,
@@ -80,11 +81,9 @@ FROM
      buku.`penerbit` AS buku_penerbit,
      buku.`kategori` AS buku_kategori,
      buku.`isbn` AS buku_isbn,
-     buku.`stok` AS buku_stok,
-     gambar.`logo` AS gambar_logo
+     buku.`stok` AS buku_stok
 FROM
-     `buku` buku,
-     `gambar` gambar]]>
+     `buku` buku]]>
 	</queryString>
 	<field name="buku_id_buku" class="java.lang.String"/>
 	<field name="buku_judul" class="java.lang.String"/>
@@ -93,7 +92,6 @@ FROM
 	<field name="buku_kategori" class="java.lang.String"/>
 	<field name="buku_isbn" class="java.lang.String"/>
 	<field name="buku_stok" class="java.lang.Integer"/>
-	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -109,12 +107,12 @@ FROM
 				<text><![CDATA[www.smkperintis1depok.sch.id    email :/smk1perdep39@yahoo.co.id]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="63" y="30" width="417" height="20" uuid="7c59abd9-3799-4142-a489-4da2f8e55504"/>
+				<reportElement x="64" y="30" width="417" height="20" uuid="7c59abd9-3799-4142-a489-4da2f8e55504"/>
 				<text><![CDATA[JLn.Siliwangi No 39.Telp/Fax(021) 7773543 Kec.Pancoran Mas-Kota Depok 16431]]></text>
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
 				<reportElement x="0" y="10" width="63" height="50" uuid="552fa5a8-b034-41cd-8327-44d249f2691e"/>
-				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

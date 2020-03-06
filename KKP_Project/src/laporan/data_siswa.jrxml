@@ -3,9 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="kelas" class="java.lang.String">
+	<parameter name="kls" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[SELECT
      siswa.`nis` AS siswa_nis,
@@ -13,13 +14,11 @@
      siswa.`alamat` AS siswa_alamat,
      siswa.`no_hp` AS siswa_no_hp,
      siswa.`jenis_kelamin` AS siswa_jenis_kelamin,
-     siswa.`kelas` AS siswa_kelas,
-     gambar.`logo` AS gambar_logo
+     siswa.`kelas` AS siswa_kelas
 FROM
-     `siswa` siswa,
-     `gambar` gambar
+     `siswa` siswa
 WHERE
-     siswa.`kelas` = $P{kelas}]]>
+    siswa.`kelas` = $P{kls}]]>
 	</queryString>
 	<field name="siswa_nis" class="java.lang.String"/>
 	<field name="siswa_nama" class="java.lang.String"/>
@@ -27,14 +26,13 @@ WHERE
 	<field name="siswa_no_hp" class="java.lang.String"/>
 	<field name="siswa_jenis_kelamin" class="java.lang.String"/>
 	<field name="siswa_kelas" class="java.lang.String"/>
-	<field name="gambar_logo" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="148" y="10" width="310" height="20" uuid="0ff54737-5117-40bf-bd3a-724074f0a5e5"/>
+				<reportElement x="140" y="10" width="310" height="20" uuid="0ff54737-5117-40bf-bd3a-724074f0a5e5"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[DATA ANGGOTA PERPUSTAKAAN SMK PERINTIS 1 DEPOK]]></text>
 			</staticText>
@@ -47,8 +45,8 @@ WHERE
 				<text><![CDATA[Jln.Siliwangi No 39.Telp/Fax(021) 7773543 Kec.Pancoran Mas-Kota Depok 16431]]></text>
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="-4" y="-5" width="82" height="84" uuid="84012826-d584-4aed-884e-80cbc628ce94"/>
-				<imageExpression><![CDATA[$F{gambar_logo}]]></imageExpression>
+				<reportElement x="0" y="0" width="65" height="50" uuid="6afa4288-31b1-4173-86e1-6e887641f90b"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
